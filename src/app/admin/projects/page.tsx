@@ -4,8 +4,8 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { Plus, Edit, Trash2, Star, Eye } from 'lucide-react';
 import { cn, formatDate } from '@/lib/utils';
-import { supabase } from '@/lib/supabase';
-import type { Project } from '@/types/database';
+
+type Project = { id: string; title: string; slug: string; description: string; category: string; gallery: string[]; materials: string[]; client_type: string; featured: boolean; seo_title: string | null; seo_description: string | null; created_at: string; updated_at: string; };
 
 export default function AdminProjectsPage() {
   const [projects, setProjects] = useState<Project[]>([]);
@@ -13,12 +13,14 @@ export default function AdminProjectsPage() {
 
   const fetchProjects = async () => {
     setLoading(true);
-    const { data, error } = await supabase
-      .from('projects')
-      .select('*')
-      .order('created_at', { ascending: false });
-
-    if (data) setProjects(data as Project[]);
+    try {
+      const res = await fetch('/api/projects');
+      if (res.ok) {
+        const data = await res.json();
+        setProjects(data);
+      }
+    } catch (err) {
+    }
     setLoading(false);
   };
 
@@ -29,8 +31,8 @@ export default function AdminProjectsPage() {
   const handleDelete = async (id: string) => {
     if (!window.confirm('Are you sure you want to delete this project? This action cannot be undone.')) return;
 
-    const { error } = await supabase.from('projects').delete().eq('id', id);
-    if (!error) {
+    const res = await fetch(`/api/projects/${id}`, { method: 'DELETE' });
+    if (res.ok) {
       setProjects((prev) => prev.filter((p) => p.id !== id));
     }
   };

@@ -1,4 +1,4 @@
-import type { Project, Blog } from '@/types/database';
+import type { Project, Blog } from '@/types';
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://namdevinfratech.com';
 const COMPANY_NAME = 'Namdev Infratech';

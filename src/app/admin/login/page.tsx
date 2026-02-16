@@ -8,7 +8,6 @@ import { z } from 'zod';
 import { motion } from 'framer-motion';
 import { Lock, Mail, Loader2 } from 'lucide-react';
 import Image from 'next/image';
-import { supabase } from '@/lib/supabase';
 import { cn } from '@/lib/utils';
 
 const loginSchema = z.object({
@@ -36,13 +35,15 @@ export default function AdminLoginPage() {
     setError(null);
 
     try {
-      const { error: authError } = await supabase.auth.signInWithPassword({
-        email: data.email,
-        password: data.password,
+      const res = await fetch('/api/auth/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: data.email, password: data.password }),
       });
 
-      if (authError) {
-        setError(authError.message);
+      const result = await res.json();
+      if (!res.ok) {
+        setError(result.error || 'Invalid email or password');
         return;
       }
 

@@ -2,11 +2,10 @@
 
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import type { Project } from '@/types/database';
+import type { Project } from '@/types';
 import ProjectCard from '@/components/ui/ProjectCard';
 import { FadeIn, SlideUp, StaggerContainer } from '@/components/ui/AnimationWrappers';
 import { cn } from '@/lib/utils';
-import { getProjects } from '@/lib/data';
 
 const categories = [
   { label: 'All', value: 'all' },
@@ -21,10 +20,11 @@ export default function ProjectsPage() {
 
   useEffect(() => {
     setLoading(true);
-    getProjects(activeCategory).then((data) => {
-      setProjects(data);
-      setLoading(false);
-    });
+    const url = activeCategory === 'all' ? '/api/projects' : `/api/projects?category=${activeCategory}`;
+    fetch(url)
+      .then(res => res.json())
+      .then((data) => { setProjects(data); setLoading(false); })
+      .catch(() => setLoading(false));
   }, [activeCategory]);
 
   const jsonLd = {

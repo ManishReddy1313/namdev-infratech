@@ -8,8 +8,6 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import { ArrowLeft, Upload, Loader2, Image as ImageIcon, Bold, Italic, Heading, X } from 'lucide-react';
 import { cn, generateSlug } from '@/lib/utils';
-import { supabase } from '@/lib/supabase';
-import type { Blog } from '@/types/database';
 
 const blogSchema = z.object({
   title: z.string().min(1, 'Title is required'),
@@ -61,23 +59,22 @@ export default function EditBlogPage() {
 
   useEffect(() => {
     const fetchBlog = async () => {
-      const { data, error } = await supabase
-        .from('blogs')
-        .select('*')
-        .eq('id', id)
-        .single<Blog>();
-
-      if (data) {
-        reset({
-          title: data.title,
-          slug: data.slug,
-          category: data.category,
-          content: data.content,
-          published: data.published,
-          seo_title: data.seo_title || '',
-          seo_description: data.seo_description || '',
-        });
-        setFeaturedImage(data.featured_image);
+      try {
+        const res = await fetch(`/api/blogs/${id}`);
+        if (res.ok) {
+          const data = await res.json();
+          reset({
+            title: data.title,
+            slug: data.slug,
+            category: data.category,
+            content: data.content,
+            published: data.published,
+            seo_title: data.seo_title || '',
+            seo_description: data.seo_description || '',
+          });
+          setFeaturedImage(data.featured_image);
+        }
+      } catch (err) {
       }
       setLoading(false);
     };
@@ -133,13 +130,14 @@ export default function EditBlogPage() {
 
     setUploading(true);
     const file = files[0];
-    const fileExt = file.name.split('.').pop();
-    const fileName = `${Date.now()}-${Math.random().toString(36).substr(2, 9)}.${fileExt}`;
-    const { data, error } = await supabase.storage.from('blog-images').upload(fileName, file);
+    const formData = new FormData();
+    formData.append('file', file);
+    formData.append('folder', 'blogs');
+    const res = await fetch('/api/upload', { method: 'POST', body: formData });
 
-    if (data) {
-      const { data: urlData } = supabase.storage.from('blog-images').getPublicUrl(data.path);
-      setFeaturedImage(urlData.publicUrl);
+    if (res.ok) {
+      const { url } = await res.json();
+      setFeaturedImage(url);
     }
 
     setUploading(false);
@@ -150,9 +148,10 @@ export default function EditBlogPage() {
     setSubmitting(true);
     setSubmitError(null);
 
-    const { error } = await supabase
-      .from('blogs')
-      .update({
+    const res = await fetch(`/api/blogs/${id}`, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
         title: data.title,
         slug: data.slug,
         category: data.category,
@@ -161,11 +160,12 @@ export default function EditBlogPage() {
         published: data.published,
         seo_title: data.seo_title || null,
         seo_description: data.seo_description || null,
-      })
-      .eq('id', id);
+      }),
+    });
 
-    if (error) {
-      setSubmitError(error.message);
+    if (!res.ok) {
+      const err = await res.json().catch(() => ({ error: 'Failed to update blog post' }));
+      setSubmitError(err.error || 'Failed to update blog post');
       setSubmitting(false);
       return;
     }

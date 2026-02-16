@@ -8,7 +8,6 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import { ArrowLeft, Plus, X, Upload, Loader2, Image as ImageIcon } from 'lucide-react';
 import { cn, generateSlug } from '@/lib/utils';
-import { supabase } from '@/lib/supabase';
 
 const projectSchema = z.object({
   title: z.string().min(1, 'Title is required'),
@@ -88,12 +87,13 @@ export default function NewProjectPage() {
 
     for (let i = 0; i < files.length; i++) {
       const file = files[i];
-      const fileExt = file.name.split('.').pop();
-      const fileName = `${Date.now()}-${Math.random().toString(36).substr(2, 9)}.${fileExt}`;
-      const { data, error } = await supabase.storage.from('project-images').upload(fileName, file);
-      if (data) {
-        const { data: urlData } = supabase.storage.from('project-images').getPublicUrl(data.path);
-        newImages.push(urlData.publicUrl);
+      const formData = new FormData();
+      formData.append('file', file);
+      formData.append('folder', 'projects');
+      const res = await fetch('/api/upload', { method: 'POST', body: formData });
+      if (res.ok) {
+        const { url } = await res.json();
+        newImages.push(url);
       }
     }
 
@@ -110,21 +110,26 @@ export default function NewProjectPage() {
     setSubmitting(true);
     setSubmitError(null);
 
-    const { error } = await supabase.from('projects').insert({
-      title: data.title,
-      slug: data.slug,
-      category: data.category,
-      description: data.description,
-      materials,
-      client_type: data.client_type,
-      featured: data.featured,
-      gallery,
-      seo_title: data.seo_title || null,
-      seo_description: data.seo_description || null,
+    const res = await fetch('/api/projects', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        title: data.title,
+        slug: data.slug,
+        category: data.category,
+        description: data.description,
+        materials,
+        client_type: data.client_type,
+        featured: data.featured,
+        gallery,
+        seo_title: data.seo_title || null,
+        seo_description: data.seo_description || null,
+      }),
     });
 
-    if (error) {
-      setSubmitError(error.message);
+    if (!res.ok) {
+      const err = await res.json().catch(() => ({ error: 'Failed to create project' }));
+      setSubmitError(err.error || 'Failed to create project');
       setSubmitting(false);
       return;
     }

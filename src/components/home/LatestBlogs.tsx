@@ -3,17 +3,19 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
-import type { Blog } from '@/types/database';
+import type { Blog } from '@/types';
 import SectionHeader from '@/components/ui/SectionHeader';
 import BlogCard from '@/components/ui/BlogCard';
 import { StaggerContainer, SlideUp } from '@/components/ui/AnimationWrappers';
-import { getLatestBlogs } from '@/lib/data';
 
 export default function LatestBlogs() {
   const [blogs, setBlogs] = useState<Blog[]>([]);
 
   useEffect(() => {
-    getLatestBlogs(3).then(setBlogs);
+    fetch('/api/blogs?published=true')
+      .then(res => res.json())
+      .then((data: Blog[]) => setBlogs(data.slice(0, 3)))
+      .catch(() => {});
   }, []);
 
   return (

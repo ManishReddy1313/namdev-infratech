@@ -14,8 +14,6 @@ import {
   Menu,
   X,
 } from 'lucide-react';
-import { supabase } from '@/lib/supabase';
-import { signOut } from '@/lib/auth';
 import { cn } from '@/lib/utils';
 
 const navLinks = [
@@ -48,27 +46,23 @@ export default function AdminLayout({
 
   useEffect(() => {
     const checkAuth = async () => {
-      const { data: { session } } = await supabase.auth.getSession();
-      if (!session) {
+      try {
+        const res = await fetch('/api/auth/me');
+        const data = await res.json();
+        if (!res.ok || !data.user) {
+          router.push('/admin/login');
+          return;
+        }
+        setIsAuthenticated(true);
+        setUserEmail(data.user.email || '');
+      } catch {
         router.push('/admin/login');
-        return;
+      } finally {
+        setIsLoading(false);
       }
-      setIsAuthenticated(true);
-      setUserEmail(session.user.email || '');
-      setIsLoading(false);
     };
 
     checkAuth();
-
-    const { data: { subscription } } = supabase.auth.onAuthStateChange(
-      (event, session) => {
-        if (event === 'SIGNED_OUT' || !session) {
-          router.push('/admin/login');
-        }
-      }
-    );
-
-    return () => subscription.unsubscribe();
   }, [router]);
 
   if (pathname === '/admin/login') {
@@ -91,7 +85,7 @@ export default function AdminLayout({
   }
 
   const handleSignOut = async () => {
-    await signOut();
+    await fetch('/api/auth/logout', { method: 'POST' });
     router.push('/admin/login');
   };
 

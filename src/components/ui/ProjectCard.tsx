@@ -3,7 +3,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
-import type { Project } from '@/types/database';
+import type { Project } from '@/types';
 import { cn, truncateText } from '@/lib/utils';
 
 interface ProjectCardProps {

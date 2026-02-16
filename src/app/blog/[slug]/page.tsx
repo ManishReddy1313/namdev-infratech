@@ -3,12 +3,11 @@
 import { useParams } from 'next/navigation';
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
-import type { Blog } from '@/types/database';
+import type { Blog } from '@/types';
 import BlogCard from '@/components/ui/BlogCard';
 import { FadeIn, SlideUp, SlideIn } from '@/components/ui/AnimationWrappers';
 import { formatDate } from '@/lib/utils';
 import { ArrowLeft, Calendar, Clock, Tag, Share2, Facebook, Twitter, Linkedin } from 'lucide-react';
-import { getBlogBySlug, getLatestBlogs } from '@/lib/data';
 
 export default function BlogPostPage() {
   const params = useParams();
@@ -20,12 +19,15 @@ export default function BlogPostPage() {
   useEffect(() => {
     async function loadData() {
       setLoading(true);
-      const blogData = await getBlogBySlug(slug);
-      setBlog(blogData);
-      if (blogData) {
-        const latest = await getLatestBlogs(4);
-        setRelatedPosts(latest.filter(b => b.id !== blogData.id).slice(0, 3));
-      }
+      try {
+        const res = await fetch(`/api/blogs/by-slug/${slug}`);
+        if (!res.ok) { setLoading(false); return; }
+        const blogData = await res.json();
+        setBlog(blogData);
+        const latestRes = await fetch('/api/blogs?published=true');
+        const latest = await latestRes.json();
+        setRelatedPosts(latest.filter((b: Blog) => b.id !== blogData.id).slice(0, 3));
+      } catch {}
       setLoading(false);
     }
     loadData();

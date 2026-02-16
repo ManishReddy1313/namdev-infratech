@@ -1,5 +1,7 @@
-import { supabase, isSupabaseConfigured } from './supabase';
-import type { Project, Blog } from '@/types/database';
+import { query, queryOne } from './db';
+import type { Project, Blog } from '@/types';
+
+export type { Project, Blog } from '@/types';
 
 const sampleProjects: Project[] = [
   {
@@ -176,17 +178,17 @@ const sampleBlogs: Blog[] = [
 ];
 
 export async function getProjects(category?: string): Promise<Project[]> {
-  if (isSupabaseConfigured()) {
-    try {
-      let query = supabase.from('projects').select('*').order('created_at', { ascending: false });
-      if (category && category !== 'all') {
-        query = query.eq('category', category as 'industrial' | 'creative');
-      }
-      const { data, error } = await query;
-      if (!error && data && data.length > 0) return data as Project[];
-    } catch (e) {
-      console.error('Error fetching projects from Supabase:', e);
+  try {
+    let sql = 'SELECT * FROM projects ORDER BY created_at DESC';
+    const params: any[] = [];
+    if (category && category !== 'all') {
+      sql = 'SELECT * FROM projects WHERE category = $1 ORDER BY created_at DESC';
+      params.push(category);
     }
+    const data = await query<Project>(sql, params);
+    if (data && data.length > 0) return data;
+  } catch (e) {
+    console.error('Error fetching projects:', e);
   }
   if (category && category !== 'all') {
     return sampleProjects.filter(p => p.category === category);
@@ -195,80 +197,71 @@ export async function getProjects(category?: string): Promise<Project[]> {
 }
 
 export async function getProjectBySlug(slug: string): Promise<Project | null> {
-  if (isSupabaseConfigured()) {
-    try {
-      const { data, error } = await supabase.from('projects').select('*').eq('slug', slug).single();
-      if (!error && data) return data as Project;
-    } catch (e) {
-      console.error('Error fetching project from Supabase:', e);
-    }
+  try {
+    const data = await queryOne<Project>('SELECT * FROM projects WHERE slug = $1', [slug]);
+    if (data) return data;
+  } catch (e) {
+    console.error('Error fetching project:', e);
   }
   return sampleProjects.find(p => p.slug === slug) || null;
 }
 
 export async function getFeaturedProjects(): Promise<Project[]> {
-  if (isSupabaseConfigured()) {
-    try {
-      const { data, error } = await supabase.from('projects').select('*').eq('featured', true).order('created_at', { ascending: false }).limit(3);
-      if (!error && data && data.length > 0) return data as Project[];
-    } catch (e) {
-      console.error('Error fetching featured projects:', e);
-    }
+  try {
+    const data = await query<Project>('SELECT * FROM projects WHERE featured = true ORDER BY created_at DESC LIMIT 3');
+    if (data && data.length > 0) return data;
+  } catch (e) {
+    console.error('Error fetching featured projects:', e);
   }
   return sampleProjects.filter(p => p.featured).slice(0, 3);
 }
 
 export async function getBlogs(category?: string): Promise<Blog[]> {
-  if (isSupabaseConfigured()) {
-    try {
-      let query = supabase.from('blogs').select('*').eq('published', true).order('created_at', { ascending: false });
-      if (category && category !== 'All') {
-        query = query.eq('category', category);
-      }
-      const { data, error } = await query;
-      if (!error && data && data.length > 0) return data as Blog[];
-    } catch (e) {
-      console.error('Error fetching blogs from Supabase:', e);
+  try {
+    let sql = 'SELECT * FROM blogs WHERE published = true ORDER BY created_at DESC';
+    const params: any[] = [];
+    if (category && category !== 'All') {
+      sql = 'SELECT * FROM blogs WHERE published = true AND category = $1 ORDER BY created_at DESC';
+      params.push(category);
     }
+    const data = await query<Blog>(sql, params);
+    if (data && data.length > 0) return data;
+  } catch (e) {
+    console.error('Error fetching blogs:', e);
   }
   const filtered = category && category !== 'All' ? sampleBlogs.filter(b => b.category === category) : sampleBlogs;
   return filtered;
 }
 
 export async function getBlogBySlug(slug: string): Promise<Blog | null> {
-  if (isSupabaseConfigured()) {
-    try {
-      const { data, error } = await supabase.from('blogs').select('*').eq('slug', slug).single();
-      if (!error && data) return data as Blog;
-    } catch (e) {
-      console.error('Error fetching blog from Supabase:', e);
-    }
+  try {
+    const data = await queryOne<Blog>('SELECT * FROM blogs WHERE slug = $1', [slug]);
+    if (data) return data;
+  } catch (e) {
+    console.error('Error fetching blog:', e);
   }
   return sampleBlogs.find(b => b.slug === slug) || null;
 }
 
 export async function getLatestBlogs(limit: number = 3): Promise<Blog[]> {
-  if (isSupabaseConfigured()) {
-    try {
-      const { data, error } = await supabase.from('blogs').select('*').eq('published', true).order('created_at', { ascending: false }).limit(limit);
-      if (!error && data && data.length > 0) return data as Blog[];
-    } catch (e) {
-      console.error('Error fetching latest blogs:', e);
-    }
+  try {
+    const data = await query<Blog>('SELECT * FROM blogs WHERE published = true ORDER BY created_at DESC LIMIT $1', [limit]);
+    if (data && data.length > 0) return data;
+  } catch (e) {
+    console.error('Error fetching latest blogs:', e);
   }
   return sampleBlogs.slice(0, limit);
 }
 
 export async function submitLead(leadData: { name: string; phone: string; email: string; message: string }): Promise<{ success: boolean; error?: string }> {
-  if (isSupabaseConfigured()) {
-    try {
-      const { error } = await supabase.from('leads').insert({ ...leadData, status: 'new' as const });
-      if (error) return { success: false, error: error.message };
-      return { success: true };
-    } catch (e) {
-      return { success: false, error: 'Failed to submit. Please try again.' };
-    }
+  try {
+    await queryOne(
+      `INSERT INTO leads (name, phone, email, message, status) VALUES ($1, $2, $3, $4, 'new') RETURNING id`,
+      [leadData.name, leadData.phone, leadData.email, leadData.message]
+    );
+    return { success: true };
+  } catch (e) {
+    console.error('Error submitting lead:', e);
+    return { success: false, error: 'Failed to submit. Please try again.' };
   }
-  console.log('Lead submitted (Supabase not configured):', leadData);
-  return { success: true };
 }

@@ -4,8 +4,8 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { Plus, Edit, Trash2, Eye, EyeOff } from 'lucide-react';
 import { cn, formatDate } from '@/lib/utils';
-import { supabase } from '@/lib/supabase';
-import type { Blog } from '@/types/database';
+
+type Blog = { id: string; title: string; slug: string; category: string; content: string; featured_image: string | null; published: boolean; seo_title: string | null; seo_description: string | null; created_at: string; updated_at: string; };
 
 export default function AdminBlogsPage() {
   const [blogs, setBlogs] = useState<Blog[]>([]);
@@ -13,12 +13,14 @@ export default function AdminBlogsPage() {
 
   const fetchBlogs = async () => {
     setLoading(true);
-    const { data, error } = await supabase
-      .from('blogs')
-      .select('*')
-      .order('created_at', { ascending: false });
-
-    if (data) setBlogs(data as Blog[]);
+    try {
+      const res = await fetch('/api/blogs');
+      if (res.ok) {
+        const data = await res.json();
+        setBlogs(data);
+      }
+    } catch (err) {
+    }
     setLoading(false);
   };
 
@@ -29,8 +31,8 @@ export default function AdminBlogsPage() {
   const handleDelete = async (id: string) => {
     if (!window.confirm('Are you sure you want to delete this blog post? This action cannot be undone.')) return;
 
-    const { error } = await supabase.from('blogs').delete().eq('id', id);
-    if (!error) {
+    const res = await fetch(`/api/blogs/${id}`, { method: 'DELETE' });
+    if (res.ok) {
       setBlogs((prev) => prev.filter((b) => b.id !== id));
     }
   };

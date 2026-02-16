@@ -3,17 +3,19 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
-import type { Project } from '@/types/database';
+import type { Project } from '@/types';
 import SectionHeader from '@/components/ui/SectionHeader';
 import ProjectCard from '@/components/ui/ProjectCard';
 import { StaggerContainer, SlideUp } from '@/components/ui/AnimationWrappers';
-import { getFeaturedProjects } from '@/lib/data';
 
 export default function FeaturedProjects() {
   const [projects, setProjects] = useState<Project[]>([]);
 
   useEffect(() => {
-    getFeaturedProjects().then(setProjects);
+    fetch('/api/projects?featured=true')
+      .then(res => res.json())
+      .then((data: Project[]) => setProjects(data.filter(p => p.featured).slice(0, 3)))
+      .catch(() => {});
   }, []);
 
   return (

@@ -1,11 +1,10 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import type { Blog } from '@/types/database';
+import type { Blog } from '@/types';
 import BlogCard from '@/components/ui/BlogCard';
 import { FadeIn, SlideUp, StaggerContainer } from '@/components/ui/AnimationWrappers';
 import { cn } from '@/lib/utils';
-import { getBlogs } from '@/lib/data';
 
 const categories = ['All', 'Industry Insights', 'Project Updates', 'Tips & Guides'];
 
@@ -16,10 +15,12 @@ export default function BlogPage() {
 
   useEffect(() => {
     setLoading(true);
-    getBlogs(activeCategory).then((data) => {
-      setBlogs(data);
-      setLoading(false);
-    });
+    const params = new URLSearchParams({ published: 'true' });
+    if (activeCategory !== 'All') params.set('category', activeCategory);
+    fetch(`/api/blogs?${params}`)
+      .then(res => res.json())
+      .then((data) => { setBlogs(data); setLoading(false); })
+      .catch(() => setLoading(false));
   }, [activeCategory]);
 
   return (

@@ -8,8 +8,6 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import { ArrowLeft, Plus, X, Upload, Loader2, Image as ImageIcon } from 'lucide-react';
 import { cn, generateSlug } from '@/lib/utils';
-import { supabase } from '@/lib/supabase';
-import type { Project } from '@/types/database';
 
 const projectSchema = z.object({
   title: z.string().min(1, 'Title is required'),
@@ -60,25 +58,24 @@ export default function EditProjectPage() {
 
   useEffect(() => {
     const fetchProject = async () => {
-      const { data, error } = await supabase
-        .from('projects')
-        .select('*')
-        .eq('id', id)
-        .single<Project>();
-
-      if (data) {
-        reset({
-          title: data.title,
-          slug: data.slug,
-          category: data.category,
-          description: data.description,
-          client_type: data.client_type,
-          featured: data.featured,
-          seo_title: data.seo_title || '',
-          seo_description: data.seo_description || '',
-        });
-        setMaterials(data.materials || []);
-        setGallery(data.gallery || []);
+      try {
+        const res = await fetch(`/api/projects/${id}`);
+        if (res.ok) {
+          const data = await res.json();
+          reset({
+            title: data.title,
+            slug: data.slug,
+            category: data.category,
+            description: data.description,
+            client_type: data.client_type,
+            featured: data.featured,
+            seo_title: data.seo_title || '',
+            seo_description: data.seo_description || '',
+          });
+          setMaterials(data.materials || []);
+          setGallery(data.gallery || []);
+        }
+      } catch (err) {
       }
       setLoading(false);
     };
@@ -120,12 +117,13 @@ export default function EditProjectPage() {
 
     for (let i = 0; i < files.length; i++) {
       const file = files[i];
-      const fileExt = file.name.split('.').pop();
-      const fileName = `${Date.now()}-${Math.random().toString(36).substr(2, 9)}.${fileExt}`;
-      const { data, error } = await supabase.storage.from('project-images').upload(fileName, file);
-      if (data) {
-        const { data: urlData } = supabase.storage.from('project-images').getPublicUrl(data.path);
-        newImages.push(urlData.publicUrl);
+      const formData = new FormData();
+      formData.append('file', file);
+      formData.append('folder', 'projects');
+      const res = await fetch('/api/upload', { method: 'POST', body: formData });
+      if (res.ok) {
+        const { url } = await res.json();
+        newImages.push(url);
       }
     }
 
@@ -142,9 +140,10 @@ export default function EditProjectPage() {
     setSubmitting(true);
     setSubmitError(null);
 
-    const { error } = await supabase
-      .from('projects')
-      .update({
+    const res = await fetch(`/api/projects/${id}`, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
         title: data.title,
         slug: data.slug,
         category: data.category,
@@ -155,11 +154,12 @@ export default function EditProjectPage() {
         gallery,
         seo_title: data.seo_title || null,
         seo_description: data.seo_description || null,
-      })
-      .eq('id', id);
+      }),
+    });
 
-    if (error) {
-      setSubmitError(error.message);
+    if (!res.ok) {
+      const err = await res.json().catch(() => ({ error: 'Failed to update project' }));
+      setSubmitError(err.error || 'Failed to update project');
       setSubmitting(false);
       return;
     }

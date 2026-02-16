@@ -4,13 +4,12 @@ import { useParams } from 'next/navigation';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { useState, useEffect } from 'react';
-import type { Project } from '@/types/database';
+import type { Project } from '@/types';
 import ProjectCard from '@/components/ui/ProjectCard';
 import SectionHeader from '@/components/ui/SectionHeader';
 import { FadeIn, SlideUp, SlideIn } from '@/components/ui/AnimationWrappers';
 import { cn } from '@/lib/utils';
 import { ArrowLeft, Calendar, Layers, Users } from 'lucide-react';
-import { getProjectBySlug, getProjects } from '@/lib/data';
 
 const galleryPlaceholders = [
   'from-steel-600 to-steel-800',
@@ -30,12 +29,15 @@ export default function ProjectDetailPage() {
   useEffect(() => {
     async function loadData() {
       setLoading(true);
-      const projectData = await getProjectBySlug(slug);
-      setProject(projectData);
-      if (projectData) {
-        const allProjects = await getProjects(projectData.category);
-        setRelatedProjects(allProjects.filter(p => p.id !== projectData.id).slice(0, 3));
-      }
+      try {
+        const res = await fetch(`/api/projects/by-slug/${slug}`);
+        if (!res.ok) { setLoading(false); return; }
+        const projectData = await res.json();
+        setProject(projectData);
+        const allRes = await fetch(`/api/projects?category=${projectData.category}`);
+        const allProjects = await allRes.json();
+        setRelatedProjects(allProjects.filter((p: Project) => p.id !== projectData.id).slice(0, 3));
+      } catch {}
       setLoading(false);
     }
     loadData();

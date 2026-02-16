@@ -3,7 +3,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
-import type { Blog } from '@/types/database';
+import type { Blog } from '@/types';
 import { formatDate, truncateText } from '@/lib/utils';
 
 interface BlogCardProps {

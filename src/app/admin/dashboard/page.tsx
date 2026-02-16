@@ -1,5 +1,7 @@
 'use client';
 
+import { useState, useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import {
@@ -10,37 +12,6 @@ import {
   Plus,
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
-
-const stats = [
-  {
-    label: 'Total Projects',
-    value: 0,
-    icon: FolderOpen,
-    bg: 'bg-blue-50',
-    iconColor: 'text-blue-500',
-  },
-  {
-    label: 'Total Blog Posts',
-    value: 0,
-    icon: FileText,
-    bg: 'bg-green-50',
-    iconColor: 'text-green-500',
-  },
-  {
-    label: 'Total Leads',
-    value: 0,
-    icon: Users,
-    bg: 'bg-purple-50',
-    iconColor: 'text-purple-500',
-  },
-  {
-    label: 'New Leads',
-    value: 0,
-    icon: TrendingUp,
-    bg: 'bg-steel-50',
-    iconColor: 'text-steel-900',
-  },
-];
 
 const quickActions = [
   {
@@ -64,6 +35,71 @@ const quickActions = [
 ];
 
 export default function AdminDashboardPage() {
+  const router = useRouter();
+  const [stats, setStats] = useState([
+    {
+      label: 'Total Projects',
+      value: 0,
+      icon: FolderOpen,
+      bg: 'bg-blue-50',
+      iconColor: 'text-blue-500',
+    },
+    {
+      label: 'Total Blog Posts',
+      value: 0,
+      icon: FileText,
+      bg: 'bg-green-50',
+      iconColor: 'text-green-500',
+    },
+    {
+      label: 'Total Leads',
+      value: 0,
+      icon: Users,
+      bg: 'bg-purple-50',
+      iconColor: 'text-purple-500',
+    },
+    {
+      label: 'New Leads',
+      value: 0,
+      icon: TrendingUp,
+      bg: 'bg-steel-50',
+      iconColor: 'text-steel-900',
+    },
+  ]);
+
+  useEffect(() => {
+    const fetchStats = async () => {
+      try {
+        const [projectsRes, blogsRes, leadsRes] = await Promise.all([
+          fetch('/api/projects'),
+          fetch('/api/blogs'),
+          fetch('/api/leads'),
+        ]);
+
+        const projects = projectsRes.ok ? await projectsRes.json() : [];
+        const blogs = blogsRes.ok ? await blogsRes.json() : [];
+        const leads = leadsRes.ok ? await leadsRes.json() : [];
+
+        const newLeadsCount = Array.isArray(leads) ? leads.filter((l: any) => l.status === 'new').length : 0;
+
+        setStats((prev) => [
+          { ...prev[0], value: Array.isArray(projects) ? projects.length : 0 },
+          { ...prev[1], value: Array.isArray(blogs) ? blogs.length : 0 },
+          { ...prev[2], value: Array.isArray(leads) ? leads.length : 0 },
+          { ...prev[3], value: newLeadsCount },
+        ]);
+      } catch (err) {
+      }
+    };
+
+    fetchStats();
+  }, []);
+
+  const handleSignOut = async () => {
+    await fetch('/api/auth/logout', { method: 'POST' });
+    router.push('/admin/login');
+  };
+
   return (
     <div className="space-y-8">
       <div>

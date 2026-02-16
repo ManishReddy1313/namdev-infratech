@@ -3,8 +3,8 @@
 import { useState, useEffect } from 'react';
 import { Users, Phone, Mail, MessageSquare, Filter, ChevronDown, ChevronUp } from 'lucide-react';
 import { cn, formatDate, truncateText } from '@/lib/utils';
-import { supabase } from '@/lib/supabase';
-import type { Lead } from '@/types/database';
+
+type Lead = { id: string; name: string; email: string; phone: string; message: string; status: 'new' | 'contacted' | 'converted'; created_at: string; updated_at: string; };
 
 const statusFilters = ['All', 'new', 'contacted', 'converted'] as const;
 
@@ -28,12 +28,14 @@ export default function AdminLeadsPage() {
 
   const fetchLeads = async () => {
     setLoading(true);
-    const { data, error } = await supabase
-      .from('leads')
-      .select('*')
-      .order('created_at', { ascending: false });
-
-    if (data) setLeads(data as Lead[]);
+    try {
+      const res = await fetch('/api/leads');
+      if (res.ok) {
+        const data = await res.json();
+        setLeads(data);
+      }
+    } catch (err) {
+    }
     setLoading(false);
   };
 
@@ -42,12 +44,13 @@ export default function AdminLeadsPage() {
   }, []);
 
   const handleStatusUpdate = async (id: string, newStatus: Lead['status']) => {
-    const { error } = await supabase
-      .from('leads')
-      .update({ status: newStatus })
-      .eq('id', id);
+    const res = await fetch(`/api/leads/${id}`, {
+      method: 'PATCH',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ status: newStatus }),
+    });
 
-    if (!error) {
+    if (res.ok) {
       setLeads((prev) =>
         prev.map((lead) => (lead.id === id ? { ...lead, status: newStatus } : lead))
       );

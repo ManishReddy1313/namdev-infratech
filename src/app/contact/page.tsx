@@ -22,7 +22,6 @@ import {
   AlertCircle,
   MessageCircle,
 } from 'lucide-react';
-import { submitLead } from '@/lib/data';
 
 const contactSchema = z.object({
   name: z.string().min(2, 'Name must be at least 2 characters'),
@@ -80,8 +79,12 @@ export default function ContactPage() {
 
   const onSubmit = async (data: ContactFormData) => {
     try {
-      const result = await submitLead(data);
-      if (result.success) {
+      const res = await fetch('/api/leads', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
+      });
+      if (res.ok) {
         setSubmitStatus('success');
         reset();
       } else {

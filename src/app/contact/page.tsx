@@ -94,19 +94,19 @@ export default function ContactPage() {
 
   return (
     <>
-      <section className="relative bg-primary-950 py-20 md:py-28">
-        <div className="absolute inset-0 bg-gradient-to-br from-primary-950 via-primary-900 to-steel-950" />
+      <section className="relative bg-steel-900 py-20 md:py-28">
+        <div className="absolute inset-0 bg-gradient-to-br from-steel-900 via-primary-900 to-steel-950" />
         <div className="container-custom relative z-10 text-center">
           <FadeIn>
-            <span className="inline-block text-sm font-semibold uppercase tracking-wider text-accent-400 mb-4">
+            <span className="inline-block text-sm font-semibold uppercase tracking-wider text-accent-200 mb-4">
               Contact Us
             </span>
           </FadeIn>
           <SlideUp>
-            <h1 className="heading-1 text-white mb-4">Get in Touch</h1>
+            <h1 className="heading-1 text-white mb-4 font-display">Get in Touch</h1>
           </SlideUp>
           <SlideUp delay={0.2}>
-            <p className="text-lg md:text-xl text-primary-300 max-w-2xl mx-auto">
+            <p className="text-lg md:text-xl text-accent-200/80 max-w-2xl mx-auto">
               Have a project in mind? We'd love to hear from you. Reach out to us and let's build something remarkable together.
             </p>
           </SlideUp>
@@ -118,7 +118,7 @@ export default function ContactPage() {
           <div className="grid grid-cols-1 lg:grid-cols-5 gap-12 lg:gap-16">
             <div className="lg:col-span-3">
               <SlideIn direction="left">
-                <h2 className="heading-3 text-primary-950 mb-8">Send Us a Message</h2>
+                <h2 className="heading-3 text-primary-900 mb-8 font-display">Send Us a Message</h2>
 
                 {submitStatus === 'success' && (
                   <motion.div
@@ -154,7 +154,7 @@ export default function ContactPage() {
 
                 <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
                   <div>
-                    <label htmlFor="name" className="block text-sm font-medium text-primary-700 mb-2">
+                    <label htmlFor="name" className="block text-sm font-medium text-steel-700 mb-2">
                       Full Name
                     </label>
                     <input
@@ -162,8 +162,8 @@ export default function ContactPage() {
                       type="text"
                       {...register('name')}
                       className={cn(
-                        'w-full px-4 py-3 rounded-lg border bg-white text-primary-950 placeholder-primary-400 focus:outline-none focus:ring-2 focus:ring-accent-500 transition-all',
-                        errors.name ? 'border-red-400' : 'border-primary-200'
+                        'w-full px-4 py-3 rounded-lg border bg-white text-primary-900 placeholder-steel-400 focus:outline-none focus:ring-2 focus:ring-steel-900 transition-all',
+                        errors.name ? 'border-red-400' : 'border-accent-200'
                       )}
                       placeholder="Your full name"
                     />
@@ -174,7 +174,7 @@ export default function ContactPage() {
 
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
-                      <label htmlFor="phone" className="block text-sm font-medium text-primary-700 mb-2">
+                      <label htmlFor="phone" className="block text-sm font-medium text-steel-700 mb-2">
                         Phone Number
                       </label>
                       <input
@@ -182,8 +182,8 @@ export default function ContactPage() {
                         type="tel"
                         {...register('phone')}
                         className={cn(
-                          'w-full px-4 py-3 rounded-lg border bg-white text-primary-950 placeholder-primary-400 focus:outline-none focus:ring-2 focus:ring-accent-500 transition-all',
-                          errors.phone ? 'border-red-400' : 'border-primary-200'
+                          'w-full px-4 py-3 rounded-lg border bg-white text-primary-900 placeholder-steel-400 focus:outline-none focus:ring-2 focus:ring-steel-900 transition-all',
+                          errors.phone ? 'border-red-400' : 'border-accent-200'
                         )}
                         placeholder="+91 99999 99999"
                       />
@@ -192,7 +192,7 @@ export default function ContactPage() {
                       )}
                     </div>
                     <div>
-                      <label htmlFor="email" className="block text-sm font-medium text-primary-700 mb-2">
+                      <label htmlFor="email" className="block text-sm font-medium text-steel-700 mb-2">
                         Email Address
                       </label>
                       <input
@@ -200,8 +200,8 @@ export default function ContactPage() {
                         type="email"
                         {...register('email')}
                         className={cn(
-                          'w-full px-4 py-3 rounded-lg border bg-white text-primary-950 placeholder-primary-400 focus:outline-none focus:ring-2 focus:ring-accent-500 transition-all',
-                          errors.email ? 'border-red-400' : 'border-primary-200'
+                          'w-full px-4 py-3 rounded-lg border bg-white text-primary-900 placeholder-steel-400 focus:outline-none focus:ring-2 focus:ring-steel-900 transition-all',
+                          errors.email ? 'border-red-400' : 'border-accent-200'
                         )}
                         placeholder="you@example.com"
                       />
@@ -212,7 +212,7 @@ export default function ContactPage() {
                   </div>
 
                   <div>
-                    <label htmlFor="message" className="block text-sm font-medium text-primary-700 mb-2">
+                    <label htmlFor="message" className="block text-sm font-medium text-steel-700 mb-2">
                       Message
                     </label>
                     <textarea
@@ -220,8 +220,8 @@ export default function ContactPage() {
                       rows={5}
                       {...register('message')}
                       className={cn(
-                        'w-full px-4 py-3 rounded-lg border bg-white text-primary-950 placeholder-primary-400 focus:outline-none focus:ring-2 focus:ring-accent-500 transition-all resize-none',
-                        errors.message ? 'border-red-400' : 'border-primary-200'
+                        'w-full px-4 py-3 rounded-lg border bg-white text-primary-900 placeholder-steel-400 focus:outline-none focus:ring-2 focus:ring-steel-900 transition-all resize-none',
+                        errors.message ? 'border-red-400' : 'border-accent-200'
                       )}
                       placeholder="Tell us about your project..."
                     />
@@ -240,7 +240,7 @@ export default function ContactPage() {
                   >
                     {isSubmitting ? (
                       <>
-                        <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                        <div className="w-4 h-4 border-2 border-steel-900/30 border-t-steel-900 rounded-full animate-spin" />
                         Sending...
                       </>
                     ) : (
@@ -256,26 +256,26 @@ export default function ContactPage() {
 
             <div className="lg:col-span-2">
               <SlideIn direction="right">
-                <div className="bg-primary-50 rounded-xl p-6 md:p-8 sticky top-24">
-                  <h3 className="text-lg font-semibold text-primary-950 mb-6">Contact Information</h3>
+                <div className="bg-accent-50 rounded-xl p-6 md:p-8 sticky top-24">
+                  <h3 className="text-lg font-semibold text-primary-900 mb-6 font-display">Contact Information</h3>
 
                   <div className="space-y-6">
                     {contactInfo.map((info) => (
                       <div key={info.label} className="flex items-start gap-4">
-                        <div className="w-10 h-10 rounded-lg bg-accent-50 flex items-center justify-center flex-shrink-0">
-                          <info.icon className="w-5 h-5 text-accent-500" />
+                        <div className="w-10 h-10 rounded-lg bg-accent-200 flex items-center justify-center flex-shrink-0">
+                          <info.icon className="w-5 h-5 text-steel-900" />
                         </div>
                         <div>
-                          <p className="text-sm font-medium text-primary-500 mb-1">{info.label}</p>
+                          <p className="text-sm font-medium text-steel-600 mb-1">{info.label}</p>
                           {info.href ? (
                             <a
                               href={info.href}
-                              className="text-primary-950 font-medium hover:text-accent-600 transition-colors whitespace-pre-line"
+                              className="text-primary-900 font-medium hover:text-steel-900 transition-colors whitespace-pre-line"
                             >
                               {info.value}
                             </a>
                           ) : (
-                            <p className="text-primary-950 font-medium whitespace-pre-line">
+                            <p className="text-primary-900 font-medium whitespace-pre-line">
                               {info.value}
                             </p>
                           )}
@@ -284,12 +284,12 @@ export default function ContactPage() {
                     ))}
                   </div>
 
-                  <div className="mt-8 pt-6 border-t border-primary-200">
+                  <div className="mt-8 pt-6 border-t border-accent-200">
                     <a
                       href="https://wa.me/919999999999"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center justify-center gap-3 w-full px-6 py-4 bg-[#25D366] text-white font-semibold rounded-lg hover:bg-[#20BD5A] transition-all duration-300 shadow-lg hover:shadow-xl"
+                      className="flex items-center justify-center gap-3 w-full px-6 py-4 bg-[#25D366] text-white font-semibold rounded-pill hover:bg-[#20BD5A] transition-all duration-300 shadow-lg hover:shadow-xl"
                     >
                       <MessageCircle className="w-5 h-5" />
                       Chat on WhatsApp
@@ -305,11 +305,11 @@ export default function ContactPage() {
       <section className="pb-16 md:pb-24">
         <div className="container-custom">
           <FadeIn>
-            <div className="w-full aspect-[16/6] rounded-xl bg-gradient-to-br from-primary-200 via-steel-200 to-primary-300 flex items-center justify-center">
+            <div className="w-full aspect-[16/6] rounded-xl bg-gradient-to-br from-accent-200 via-steel-200 to-accent-300 flex items-center justify-center">
               <div className="text-center">
-                <MapPin className="w-12 h-12 text-primary-400 mx-auto mb-3" />
-                <p className="text-primary-500 font-medium">Map Integration Coming Soon</p>
-                <p className="text-sm text-primary-400 mt-1">
+                <MapPin className="w-12 h-12 text-steel-400 mx-auto mb-3" />
+                <p className="text-steel-700 font-medium font-display">Map Integration Coming Soon</p>
+                <p className="text-sm text-steel-500 mt-1">
                   Plot No. 45, Industrial Area, Pune, Maharashtra 411057
                 </p>
               </div>

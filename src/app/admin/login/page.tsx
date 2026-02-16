@@ -7,6 +7,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import { motion } from 'framer-motion';
 import { Lock, Mail, Loader2 } from 'lucide-react';
+import Image from 'next/image';
 import { supabase } from '@/lib/supabase';
 import { cn } from '@/lib/utils';
 
@@ -54,7 +55,7 @@ export default function AdminLoginPage() {
   };
 
   return (
-    <div className="min-h-screen bg-primary-950 flex items-center justify-center px-4">
+    <div className="min-h-screen bg-steel-900 flex items-center justify-center px-4">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -63,12 +64,12 @@ export default function AdminLoginPage() {
       >
         <div className="bg-white rounded-2xl shadow-2xl p-8">
           <div className="text-center mb-8">
-            <div className="inline-flex items-center justify-center w-16 h-16 bg-accent-500 rounded-xl mb-4">
+            <div className="inline-flex items-center justify-center w-16 h-16 bg-steel-900 rounded-xl mb-4">
               <Lock className="w-8 h-8 text-white" />
             </div>
-            <h1 className="text-2xl font-bold text-primary-950 tracking-tight">
-              NAMDEV INFRATECH
-            </h1>
+            <div className="flex justify-center mb-2">
+              <Image src="/logo.png" alt="Namdev Infratech" width={140} height={48} />
+            </div>
             <p className="text-primary-500 text-sm mt-1">Admin Panel</p>
           </div>
 
@@ -93,7 +94,7 @@ export default function AdminLoginPage() {
                   type="email"
                   {...register('email')}
                   className={cn(
-                    'w-full pl-11 pr-4 py-3 border rounded-lg text-primary-900 placeholder-primary-400 focus:outline-none focus:ring-2 focus:ring-accent-500 focus:border-transparent transition-all',
+                    'w-full pl-11 pr-4 py-3 border rounded-lg text-primary-900 placeholder-primary-400 focus:outline-none focus:ring-2 focus:ring-steel-900 focus:border-transparent transition-all',
                     errors.email ? 'border-red-300' : 'border-primary-200'
                   )}
                   placeholder="admin@namdevinfra.com"
@@ -114,7 +115,7 @@ export default function AdminLoginPage() {
                   type="password"
                   {...register('password')}
                   className={cn(
-                    'w-full pl-11 pr-4 py-3 border rounded-lg text-primary-900 placeholder-primary-400 focus:outline-none focus:ring-2 focus:ring-accent-500 focus:border-transparent transition-all',
+                    'w-full pl-11 pr-4 py-3 border rounded-lg text-primary-900 placeholder-primary-400 focus:outline-none focus:ring-2 focus:ring-steel-900 focus:border-transparent transition-all',
                     errors.password ? 'border-red-300' : 'border-primary-200'
                   )}
                   placeholder="••••••••"
@@ -129,10 +130,10 @@ export default function AdminLoginPage() {
               type="submit"
               disabled={isLoading}
               className={cn(
-                'w-full py-3 px-4 rounded-lg text-white font-medium transition-all',
+                'w-full py-3 px-4 rounded-pill text-white font-medium transition-all',
                 isLoading
-                  ? 'bg-accent-400 cursor-not-allowed'
-                  : 'bg-accent-500 hover:bg-accent-600 active:bg-accent-700'
+                  ? 'bg-steel-700 cursor-not-allowed'
+                  : 'bg-steel-900 hover:bg-steel-800 active:bg-steel-700'
               )}
             >
               {isLoading ? (
@@ -147,7 +148,7 @@ export default function AdminLoginPage() {
           </form>
         </div>
 
-        <p className="text-center text-primary-500 text-xs mt-6">
+        <p className="text-center text-steel-300 text-xs mt-6">
           Admin access only. Contact your administrator for credentials.
         </p>
       </motion.div>

@@ -15,7 +15,7 @@ import { getProjectBySlug, getProjects } from '@/lib/data';
 const galleryPlaceholders = [
   'from-steel-600 to-steel-800',
   'from-primary-700 to-primary-900',
-  'from-accent-600 to-accent-800',
+  'from-steel-700 to-steel-900',
   'from-steel-700 to-primary-800',
 ];
 
@@ -44,7 +44,7 @@ export default function ProjectDetailPage() {
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center">
-        <div className="w-8 h-8 border-4 border-accent-500 border-t-transparent rounded-full animate-spin" />
+        <div className="w-8 h-8 border-4 border-steel-900 border-t-transparent rounded-full animate-spin" />
       </div>
     );
   }
@@ -53,7 +53,7 @@ export default function ProjectDetailPage() {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
-          <h1 className="heading-2 text-primary-950 mb-4">Project Not Found</h1>
+          <h1 className="heading-2 text-primary-900 mb-4 font-display">Project Not Found</h1>
           <p className="text-body mb-8">The project you're looking for doesn't exist.</p>
           <Link href="/projects" className="btn-primary">
             Back to Projects
@@ -65,8 +65,8 @@ export default function ProjectDetailPage() {
 
   return (
     <>
-      <section className="relative bg-primary-950 py-16 md:py-24">
-        <div className="absolute inset-0 bg-gradient-to-br from-primary-950 via-primary-900 to-steel-950" />
+      <section className="relative bg-steel-900 py-16 md:py-24">
+        <div className="absolute inset-0 bg-gradient-to-br from-steel-900 via-primary-900 to-steel-950" />
         <div className="container-custom relative z-10">
           <FadeIn>
             <Link
@@ -80,15 +80,15 @@ export default function ProjectDetailPage() {
           <SlideUp>
             <span
               className={cn(
-                'inline-block px-4 py-1.5 text-xs font-semibold uppercase tracking-wider rounded-full text-white mb-4',
-                project.category === 'creative' ? 'bg-accent-500' : 'bg-steel-600'
+                'inline-block px-4 py-1.5 text-xs font-semibold uppercase tracking-wider rounded-full mb-4',
+                project.category === 'creative' ? 'bg-accent-200 text-steel-900' : 'bg-steel-900 text-white border border-steel-700'
               )}
             >
               {project.category}
             </span>
           </SlideUp>
           <SlideUp delay={0.1}>
-            <h1 className="heading-1 text-white mb-4">{project.title}</h1>
+            <h1 className="heading-1 text-white mb-4 font-display">{project.title}</h1>
           </SlideUp>
           <SlideUp delay={0.2}>
             <p className="text-lg text-primary-300 max-w-3xl">
@@ -119,7 +119,7 @@ export default function ProjectDetailPage() {
                       'w-20 h-16 rounded-lg bg-gradient-to-br transition-all duration-300',
                       gradient,
                       activeImage === index
-                        ? 'ring-2 ring-accent-500 ring-offset-2'
+                        ? 'ring-2 ring-steel-900 ring-offset-2'
                         : 'opacity-60 hover:opacity-100'
                     )}
                   />
@@ -128,7 +128,7 @@ export default function ProjectDetailPage() {
 
               <div className="mt-12">
                 <SlideUp>
-                  <h2 className="heading-3 text-primary-950 mb-6">Project Details</h2>
+                  <h2 className="heading-3 text-primary-900 mb-6 font-display">Project Details</h2>
                 </SlideUp>
                 <SlideUp delay={0.1}>
                   <div className="prose prose-lg max-w-none">
@@ -141,12 +141,12 @@ export default function ProjectDetailPage() {
                 </SlideUp>
 
                 <SlideUp delay={0.2} className="mt-8">
-                  <h3 className="text-lg font-semibold text-primary-950 mb-4">Materials Used</h3>
+                  <h3 className="text-lg font-semibold font-display text-primary-900 mb-4">Materials Used</h3>
                   <div className="flex flex-wrap gap-2">
                     {project.materials.map((material) => (
                       <span
                         key={material}
-                        className="px-4 py-2 bg-primary-50 text-primary-700 rounded-full text-sm font-medium border border-primary-200"
+                        className="px-4 py-2 bg-accent-200/50 text-steel-900 rounded-full text-sm font-medium border border-accent-200"
                       >
                         {material}
                       </span>
@@ -159,28 +159,28 @@ export default function ProjectDetailPage() {
             <div className="lg:col-span-1">
               <SlideIn direction="right">
                 <div className="bg-primary-50 rounded-xl p-6 sticky top-24">
-                  <h3 className="text-lg font-semibold text-primary-950 mb-6">Project Summary</h3>
+                  <h3 className="text-lg font-semibold font-display text-primary-900 mb-6">Project Summary</h3>
 
                   <div className="space-y-5">
                     <div className="flex items-start gap-3">
-                      <Layers className="w-5 h-5 text-accent-500 mt-0.5" />
+                      <Layers className="w-5 h-5 text-steel-900 mt-0.5" />
                       <div>
                         <p className="text-sm text-primary-500">Category</p>
-                        <p className="font-medium text-primary-950 capitalize">{project.category}</p>
+                        <p className="font-medium text-primary-900 capitalize">{project.category}</p>
                       </div>
                     </div>
                     <div className="flex items-start gap-3">
-                      <Users className="w-5 h-5 text-accent-500 mt-0.5" />
+                      <Users className="w-5 h-5 text-steel-900 mt-0.5" />
                       <div>
                         <p className="text-sm text-primary-500">Client Type</p>
-                        <p className="font-medium text-primary-950">{project.client_type}</p>
+                        <p className="font-medium text-primary-900">{project.client_type}</p>
                       </div>
                     </div>
                     <div className="flex items-start gap-3">
-                      <Calendar className="w-5 h-5 text-accent-500 mt-0.5" />
+                      <Calendar className="w-5 h-5 text-steel-900 mt-0.5" />
                       <div>
                         <p className="text-sm text-primary-500">Completed</p>
-                        <p className="font-medium text-primary-950">
+                        <p className="font-medium text-primary-900">
                           {new Date(project.created_at).toLocaleDateString('en-IN', {
                             year: 'numeric',
                             month: 'long',

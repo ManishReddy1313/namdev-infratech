@@ -55,16 +55,16 @@ export default function ProjectsPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
 
-      <section className="relative bg-primary-950 py-20 md:py-28">
-        <div className="absolute inset-0 bg-gradient-to-br from-primary-950 via-primary-900 to-steel-950" />
+      <section className="relative bg-steel-900 py-20 md:py-28">
+        <div className="absolute inset-0 bg-gradient-to-br from-steel-900 via-primary-900 to-steel-950" />
         <div className="container-custom relative z-10 text-center">
           <FadeIn>
-            <span className="inline-block text-sm font-semibold uppercase tracking-wider text-accent-400 mb-4">
+            <span className="inline-block text-sm font-semibold uppercase tracking-wider text-accent-200 mb-4">
               Portfolio
             </span>
           </FadeIn>
           <SlideUp>
-            <h1 className="heading-1 text-white mb-4">Our Projects</h1>
+            <h1 className="heading-1 text-white mb-4 font-display">Our Projects</h1>
           </SlideUp>
           <SlideUp delay={0.2}>
             <p className="text-lg md:text-xl text-primary-300 max-w-2xl mx-auto">
@@ -84,8 +84,8 @@ export default function ProjectsPage() {
                 className={cn(
                   'px-5 py-2.5 rounded-full text-sm font-semibold transition-all duration-300',
                   activeCategory === cat.value
-                    ? 'bg-accent-500 text-white shadow-lg'
-                    : 'bg-white text-primary-700 hover:bg-primary-100 border border-primary-200'
+                    ? 'bg-steel-900 text-white shadow-lg'
+                    : 'bg-white text-primary-700 hover:bg-primary-100 border border-steel-900'
                 )}
               >
                 {cat.label}

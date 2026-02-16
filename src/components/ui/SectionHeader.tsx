@@ -27,7 +27,7 @@ export default function SectionHeader({
       )}
     >
       {label && (
-        <span className="inline-block text-sm font-semibold uppercase tracking-wider text-accent-500 mb-3">
+        <span className="inline-block text-sm font-semibold uppercase tracking-wider text-steel-900 mb-3">
           {label}
         </span>
       )}

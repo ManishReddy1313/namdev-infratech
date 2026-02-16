@@ -36,7 +36,7 @@ export default function LatestBlogs() {
         <div className="mt-12 text-center">
           <Link
             href="/blog"
-            className="inline-flex items-center gap-2 px-8 py-4 bg-primary-950 hover:bg-primary-800 text-white font-semibold rounded-lg transition-colors duration-300"
+            className="btn-secondary inline-flex items-center gap-2 px-8 py-4"
           >
             View All Articles
             <ArrowRight className="w-5 h-5" />

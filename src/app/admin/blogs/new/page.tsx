@@ -143,7 +143,7 @@ export default function NewBlogPage() {
       <div className="flex items-center gap-4">
         <Link
           href="/admin/blogs"
-          className="inline-flex items-center gap-1.5 text-sm text-primary-500 hover:text-accent-600 transition-colors"
+          className="inline-flex items-center gap-1.5 text-sm text-primary-500 hover:text-steel-900 transition-colors"
         >
           <ArrowLeft className="w-4 h-4" />
           Back to Blog Posts
@@ -151,7 +151,7 @@ export default function NewBlogPage() {
       </div>
 
       <div>
-        <h1 className="text-2xl font-bold text-primary-900">New Blog Post</h1>
+        <h1 className="text-2xl font-bold font-display text-primary-900">New Blog Post</h1>
         <p className="text-primary-500 mt-1">Create a new blog post</p>
       </div>
 
@@ -174,7 +174,7 @@ export default function NewBlogPage() {
               {...register('title')}
               onChange={handleTitleChange}
               className={cn(
-                'w-full px-4 py-2.5 rounded-lg border text-primary-900 text-sm transition-colors focus:outline-none focus:ring-2 focus:ring-accent-500 focus:border-accent-500',
+                'w-full px-4 py-2.5 rounded-lg border text-primary-900 text-sm transition-colors focus:outline-none focus:ring-2 focus:ring-steel-900 focus:border-steel-900',
                 errors.title ? 'border-red-300' : 'border-steel-300'
               )}
               placeholder="Enter blog post title"
@@ -188,7 +188,7 @@ export default function NewBlogPage() {
               type="text"
               {...register('slug')}
               className={cn(
-                'w-full px-4 py-2.5 rounded-lg border text-primary-900 text-sm transition-colors focus:outline-none focus:ring-2 focus:ring-accent-500 focus:border-accent-500',
+                'w-full px-4 py-2.5 rounded-lg border text-primary-900 text-sm transition-colors focus:outline-none focus:ring-2 focus:ring-steel-900 focus:border-steel-900',
                 errors.slug ? 'border-red-300' : 'border-steel-300'
               )}
               placeholder="blog-post-url-slug"
@@ -201,7 +201,7 @@ export default function NewBlogPage() {
             <select
               {...register('category')}
               className={cn(
-                'w-full px-4 py-2.5 rounded-lg border text-primary-900 text-sm transition-colors focus:outline-none focus:ring-2 focus:ring-accent-500 focus:border-accent-500',
+                'w-full px-4 py-2.5 rounded-lg border text-primary-900 text-sm transition-colors focus:outline-none focus:ring-2 focus:ring-steel-900 focus:border-steel-900',
                 errors.category ? 'border-red-300' : 'border-steel-300'
               )}
             >
@@ -215,7 +215,7 @@ export default function NewBlogPage() {
 
           <div>
             <label className="block text-sm font-medium text-primary-700 mb-1.5">Content</label>
-            <div className="border border-steel-300 rounded-lg overflow-hidden focus-within:ring-2 focus-within:ring-accent-500 focus-within:border-accent-500">
+            <div className="border border-steel-300 rounded-lg overflow-hidden focus-within:ring-2 focus-within:ring-steel-900 focus-within:border-steel-900">
               <div className="flex items-center gap-1 px-3 py-2 bg-steel-50 border-b border-steel-300">
                 <button
                   type="button"
@@ -264,7 +264,7 @@ export default function NewBlogPage() {
               type="checkbox"
               {...register('published')}
               id="published"
-              className="w-4 h-4 rounded border-steel-300 text-accent-500 focus:ring-accent-500"
+              className="w-4 h-4 rounded border-steel-300 text-steel-900 focus:ring-steel-900"
             />
             <label htmlFor="published" className="text-sm font-medium text-primary-700">
               Publish immediately
@@ -293,11 +293,11 @@ export default function NewBlogPage() {
               </button>
             </div>
           ) : (
-            <label className="flex flex-col items-center justify-center w-full h-32 border-2 border-dashed border-steel-300 rounded-lg cursor-pointer hover:border-accent-400 hover:bg-accent-50/30 transition-colors">
+            <label className="flex flex-col items-center justify-center w-full h-32 border-2 border-dashed border-steel-300 rounded-lg cursor-pointer hover:border-steel-400 hover:bg-steel-50/30 transition-colors">
               <div className="flex flex-col items-center justify-center">
                 {uploading ? (
                   <>
-                    <Loader2 className="w-8 h-8 text-accent-500 animate-spin mb-2" />
+                    <Loader2 className="w-8 h-8 text-steel-900 animate-spin mb-2" />
                     <p className="text-sm text-primary-500">Uploading...</p>
                   </>
                 ) : (
@@ -329,7 +329,7 @@ export default function NewBlogPage() {
             <input
               type="text"
               {...register('seo_title')}
-              className="w-full px-4 py-2.5 rounded-lg border border-steel-300 text-primary-900 text-sm transition-colors focus:outline-none focus:ring-2 focus:ring-accent-500 focus:border-accent-500"
+              className="w-full px-4 py-2.5 rounded-lg border border-steel-300 text-primary-900 text-sm transition-colors focus:outline-none focus:ring-2 focus:ring-steel-900 focus:border-steel-900"
               placeholder="SEO optimized title"
             />
           </div>
@@ -339,7 +339,7 @@ export default function NewBlogPage() {
             <textarea
               {...register('seo_description')}
               rows={3}
-              className="w-full px-4 py-2.5 rounded-lg border border-steel-300 text-primary-900 text-sm transition-colors focus:outline-none focus:ring-2 focus:ring-accent-500 focus:border-accent-500 resize-y"
+              className="w-full px-4 py-2.5 rounded-lg border border-steel-300 text-primary-900 text-sm transition-colors focus:outline-none focus:ring-2 focus:ring-steel-900 focus:border-steel-900 resize-y"
               placeholder="Brief description for search engines"
             />
           </div>
@@ -356,7 +356,7 @@ export default function NewBlogPage() {
             type="submit"
             disabled={submitting}
             className={cn(
-              'inline-flex items-center gap-2 px-6 py-2.5 bg-accent-500 hover:bg-accent-600 text-white rounded-lg text-sm font-medium transition-colors',
+              'inline-flex items-center gap-2 px-6 py-2.5 bg-steel-900 hover:bg-steel-800 text-white rounded-pill text-sm font-medium transition-colors',
               submitting && 'opacity-70 cursor-not-allowed'
             )}
           >

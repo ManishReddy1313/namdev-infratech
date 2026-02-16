@@ -55,12 +55,12 @@ export default function AdminProjectsPage() {
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-2xl font-bold text-primary-900">Projects</h1>
+          <h1 className="text-2xl font-bold font-display text-primary-900">Projects</h1>
           <p className="text-primary-500 mt-1">Manage your project portfolio</p>
         </div>
         <Link
           href="/admin/projects/new"
-          className="inline-flex items-center gap-2 px-4 py-2.5 bg-accent-500 hover:bg-accent-600 text-white rounded-lg text-sm font-medium transition-colors"
+          className="inline-flex items-center gap-2 px-4 py-2.5 bg-steel-900 hover:bg-steel-800 text-white rounded-pill text-sm font-medium transition-colors"
         >
           <Plus className="w-4 h-4" />
           Add New Project
@@ -76,7 +76,7 @@ export default function AdminProjectsPage() {
           </p>
           <Link
             href="/admin/projects/new"
-            className="inline-flex items-center gap-2 mt-4 px-4 py-2 bg-accent-500 hover:bg-accent-600 text-white rounded-lg text-sm font-medium transition-colors"
+            className="inline-flex items-center gap-2 mt-4 px-4 py-2 bg-steel-900 hover:bg-steel-800 text-white rounded-pill text-sm font-medium transition-colors"
           >
             <Plus className="w-4 h-4" />
             Add New Project
@@ -109,7 +109,7 @@ export default function AdminProjectsPage() {
                       'inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium capitalize',
                       project.category === 'industrial'
                         ? 'bg-steel-100 text-steel-700'
-                        : 'bg-accent-100 text-accent-700'
+                        : 'bg-accent-200 text-steel-900'
                     )}
                   >
                     {project.category}
@@ -120,7 +120,7 @@ export default function AdminProjectsPage() {
                     className={cn(
                       'w-5 h-5',
                       project.featured
-                        ? 'text-accent-500 fill-accent-500'
+                        ? 'text-steel-900 fill-steel-900'
                         : 'text-primary-300'
                     )}
                   />
@@ -131,7 +131,7 @@ export default function AdminProjectsPage() {
                 <div className="md:col-span-2 flex items-center gap-2 md:justify-end">
                   <Link
                     href={`/admin/projects/edit/${project.id}`}
-                    className="inline-flex items-center gap-1.5 px-3 py-1.5 text-sm text-steel-700 hover:text-accent-600 hover:bg-accent-50 rounded-lg transition-colors"
+                    className="inline-flex items-center gap-1.5 px-3 py-1.5 text-sm text-steel-700 hover:text-steel-900 hover:bg-steel-50 rounded-lg transition-colors"
                   >
                     <Edit className="w-4 h-4" />
                     <span className="md:hidden lg:inline">Edit</span>

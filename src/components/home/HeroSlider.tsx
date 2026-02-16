@@ -8,19 +8,19 @@ import { cn } from '@/lib/utils';
 
 const slides = [
   {
-    title: 'Building Tomorrow\'s Infrastructure Today',
-    subtitle: 'Precision engineering and robust construction solutions for a rapidly evolving world. We deliver infrastructure that stands the test of time.',
-    gradient: 'from-primary-950 via-steel-950 to-primary-900',
+    title: 'Building a Stronger Tomorrow with Generations of Expertise',
+    subtitle: 'Precision engineering and robust construction solutions for a rapidly evolving world.',
+    gradient: 'from-primary-900 via-steel-900 to-primary-900',
   },
   {
-    title: 'Industrial Fabrication Excellence',
-    subtitle: 'From structural steel frameworks to complex industrial installations, we fabricate with unmatched accuracy and strength.',
-    gradient: 'from-steel-950 via-primary-950 to-steel-900',
+    title: 'Your Trusted Source for High-Quality Structural Materials',
+    subtitle: 'From structural steel to custom fabrication, we deliver materials that stand the test of time.',
+    gradient: 'from-steel-900 via-primary-900 to-steel-900',
   },
   {
-    title: 'Creative Custom Projects',
-    subtitle: 'Unique designs brought to life through expert craftsmanship. We turn your most ambitious visions into stunning metal realities.',
-    gradient: 'from-primary-900 via-steel-950 to-primary-950',
+    title: 'Precision and Excellence in Every Crafted Piece',
+    subtitle: 'Custom fabrication, laser cutting, and engineering solutions for construction, architecture, and interior design.',
+    gradient: 'from-primary-900 via-steel-900 to-primary-900',
   },
 ];
 
@@ -50,7 +50,7 @@ export default function HeroSlider() {
             slides[current].gradient
           )}
         >
-          <div className="absolute inset-0 bg-black/40" />
+          <div className="absolute inset-0 bg-black/50" />
         </motion.div>
       </AnimatePresence>
 
@@ -66,7 +66,7 @@ export default function HeroSlider() {
               className="max-w-3xl"
             >
               <motion.h1
-                className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-tight"
+                className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-tight font-display"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.2 }}
@@ -74,7 +74,7 @@ export default function HeroSlider() {
                 {slides[current].title}
               </motion.h1>
               <motion.p
-                className="mt-6 text-lg sm:text-xl text-primary-200 max-w-2xl leading-relaxed"
+                className="mt-6 text-lg sm:text-xl text-accent-200 max-w-2xl leading-relaxed font-sans"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.4 }}
@@ -88,17 +88,17 @@ export default function HeroSlider() {
                 transition={{ duration: 0.6, delay: 0.6 }}
               >
                 <Link
-                  href="/projects"
-                  className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-accent-500 hover:bg-accent-600 text-white font-semibold rounded-lg transition-colors duration-300"
+                  href="/contact"
+                  className="btn-primary inline-flex items-center justify-center gap-2 px-8 py-4"
                 >
-                  Explore Projects
+                  Get in Touch
                   <ArrowRight className="w-5 h-5" />
                 </Link>
                 <Link
-                  href="/contact"
-                  className="inline-flex items-center justify-center gap-2 px-8 py-4 border-2 border-white/30 hover:border-white/60 text-white font-semibold rounded-lg transition-colors duration-300"
+                  href="/projects"
+                  className="inline-flex items-center justify-center gap-2 px-8 py-4 border-2 border-white/60 hover:border-white text-white font-semibold rounded-pill transition-colors duration-300"
                 >
-                  Get in Touch
+                  Our Services
                   <ChevronRight className="w-5 h-5" />
                 </Link>
               </motion.div>
@@ -115,7 +115,7 @@ export default function HeroSlider() {
             className={cn(
               'w-3 h-3 rounded-full transition-all duration-300',
               index === current
-                ? 'bg-accent-500 w-8'
+                ? 'bg-accent-200 w-8'
                 : 'bg-white/40 hover:bg-white/60'
             )}
           />

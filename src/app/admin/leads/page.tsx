@@ -86,7 +86,7 @@ export default function AdminLeadsPage() {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-2xl font-bold text-primary-900">Leads</h1>
+        <h1 className="text-2xl font-bold font-display text-primary-900">Leads</h1>
         <p className="text-primary-500 mt-1">Manage and track your leads</p>
       </div>
 
@@ -98,7 +98,7 @@ export default function AdminLeadsPage() {
             className={cn(
               'inline-flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-colors',
               activeFilter === filter
-                ? 'bg-accent-500 text-white'
+                ? 'bg-steel-900 text-white'
                 : 'bg-white border border-steel-200 text-primary-600 hover:bg-steel-50'
             )}
           >
@@ -152,7 +152,7 @@ export default function AdminLeadsPage() {
                       <a
                         href={`mailto:${lead.email}`}
                         onClick={(e) => e.stopPropagation()}
-                        className="text-sm text-accent-600 hover:text-accent-700 truncate block"
+                        className="text-sm text-steel-700 hover:text-steel-900 truncate block"
                       >
                         {lead.email}
                       </a>
@@ -161,7 +161,7 @@ export default function AdminLeadsPage() {
                       <a
                         href={`tel:${lead.phone}`}
                         onClick={(e) => e.stopPropagation()}
-                        className="text-sm text-primary-600 hover:text-accent-600 truncate block"
+                        className="text-sm text-primary-600 hover:text-steel-900 truncate block"
                       >
                         {lead.phone}
                       </a>
@@ -180,7 +180,7 @@ export default function AdminLeadsPage() {
                         }}
                         onClick={(e) => e.stopPropagation()}
                         className={cn(
-                          'px-2.5 py-1 rounded-full text-xs font-medium border-0 cursor-pointer focus:outline-none focus:ring-2 focus:ring-accent-500',
+                          'px-2.5 py-1 rounded-full text-xs font-medium border-0 cursor-pointer focus:outline-none focus:ring-2 focus:ring-steel-900',
                           statusColors[lead.status]
                         )}
                       >
@@ -211,14 +211,14 @@ export default function AdminLeadsPage() {
                         <div className="flex items-center gap-4 mt-3 pl-6">
                           <a
                             href={`mailto:${lead.email}`}
-                            className="inline-flex items-center gap-1.5 text-xs text-accent-600 hover:text-accent-700 font-medium"
+                            className="inline-flex items-center gap-1.5 text-xs text-steel-700 hover:text-steel-900 font-medium"
                           >
                             <Mail className="w-3.5 h-3.5" />
                             {lead.email}
                           </a>
                           <a
                             href={`tel:${lead.phone}`}
-                            className="inline-flex items-center gap-1.5 text-xs text-accent-600 hover:text-accent-700 font-medium"
+                            className="inline-flex items-center gap-1.5 text-xs text-steel-700 hover:text-steel-900 font-medium"
                           >
                             <Phone className="w-3.5 h-3.5" />
                             {lead.phone}
@@ -257,7 +257,7 @@ export default function AdminLeadsPage() {
                     <a
                       href={`mailto:${lead.email}`}
                       onClick={(e) => e.stopPropagation()}
-                      className="flex items-center gap-2 text-sm text-accent-600"
+                      className="flex items-center gap-2 text-sm text-steel-700"
                     >
                       <Mail className="w-3.5 h-3.5" />
                       {lead.email}
@@ -297,7 +297,7 @@ export default function AdminLeadsPage() {
                         value={lead.status}
                         onChange={(e) => handleStatusUpdate(lead.id, e.target.value as Lead['status'])}
                         className={cn(
-                          'w-full px-3 py-2 rounded-lg text-sm font-medium border border-steel-200 cursor-pointer focus:outline-none focus:ring-2 focus:ring-accent-500',
+                          'w-full px-3 py-2 rounded-lg text-sm font-medium border border-steel-200 cursor-pointer focus:outline-none focus:ring-2 focus:ring-steel-900',
                           statusColors[lead.status]
                         )}
                       >

@@ -6,10 +6,10 @@ import SectionHeader from '@/components/ui/SectionHeader';
 import { SlideIn, FadeIn } from '@/components/ui/AnimationWrappers';
 
 const stats = [
-  { value: 150, suffix: '+', label: 'Projects Completed' },
-  { value: 50, suffix: '+', label: 'Industrial Clients' },
-  { value: 10, suffix: '+', label: 'Years Experience' },
-  { value: 100, suffix: '%', label: 'Client Satisfaction' },
+  { value: 20, suffix: '+', label: 'Years in Industry' },
+  { value: 400, suffix: '+', label: 'Tonnes/Month' },
+  { value: 1, suffix: 'K+', label: 'Happy Clients' },
+  { value: 2003, suffix: '', label: 'Founded' },
 ];
 
 function StatItem({ value, suffix, label }: { value: number; suffix: string; label: string }) {
@@ -36,10 +36,10 @@ function StatItem({ value, suffix, label }: { value: number; suffix: string; lab
 
   return (
     <div ref={ref} className="text-center">
-      <span className="text-3xl md:text-4xl font-bold text-accent-500">
+      <span className="text-3xl md:text-4xl font-bold text-steel-900 font-display">
         {count}{suffix}
       </span>
-      <p className="mt-2 text-sm text-primary-500">{label}</p>
+      <p className="mt-2 text-sm text-steel-700 font-sans">{label}</p>
     </div>
   );
 }
@@ -49,29 +49,26 @@ export default function CompanyPositioning() {
     <section className="py-20 md:py-28 bg-white">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <SectionHeader
-          label="WHO WE ARE"
-          title="Engineering Excellence Since Inception"
+          label="A NEW NAME, A STRONGER COMMITMENT"
+          title="From Namadeva Steel Center to Namdev Infratech"
           align="left"
         />
 
         <div className="grid md:grid-cols-2 gap-12 items-center mb-16">
           <SlideIn direction="left">
             <div className="space-y-5">
-              <p className="text-primary-600 leading-relaxed">
-                Namdev Infratech is a leading infrastructure development and fabrication company specializing in delivering robust, scalable solutions for industrial and commercial projects. With a foundation built on precision engineering, we transform complex blueprints into enduring structures.
+              <p className="text-steel-700 leading-relaxed font-sans">
+                What started in 2003 as a simple material supply business has grown into a complete solution provider for interior design, architecture, and construction. From handling 25 tonnes back then to managing 400 tonnes per month now, we've come a long way.
               </p>
-              <p className="text-primary-600 leading-relaxed">
-                Our expertise spans structural steel fabrication, industrial plant construction, and custom metalwork. Every project we undertake reflects our commitment to quality materials, meticulous craftsmanship, and adherence to the highest safety standards.
-              </p>
-              <p className="text-primary-600 leading-relaxed">
-                From large-scale industrial facilities to bespoke creative installations, we bring the same level of dedication and technical excellence to every endeavor, ensuring our clients receive solutions that exceed expectations.
+              <p className="text-steel-700 leading-relaxed font-sans">
+                Over the years, we've learned about the challenges designers, architects, and contractors face, and we've adapted to meet their needs. With services like custom fabrication, laser cutting, HR plate cutting, and more, our new name reflects our commitment to providing innovative, reliable solutions.
               </p>
             </div>
           </SlideIn>
 
           <SlideIn direction="right">
-            <div className="aspect-[4/3] rounded-2xl bg-gradient-to-br from-steel-200 via-steel-300 to-primary-300 flex items-center justify-center">
-              <span className="text-6xl font-bold text-white/60">NI</span>
+            <div className="aspect-[4/3] rounded-2xl bg-gradient-to-br from-steel-200 via-steel-300 to-accent-200 flex items-center justify-center">
+              <span className="text-6xl font-bold text-white/60 font-display">NI</span>
             </div>
           </SlideIn>
         </div>

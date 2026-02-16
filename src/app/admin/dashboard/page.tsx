@@ -37,8 +37,8 @@ const stats = [
     label: 'New Leads',
     value: 0,
     icon: TrendingUp,
-    bg: 'bg-accent-50',
-    iconColor: 'text-accent-500',
+    bg: 'bg-steel-50',
+    iconColor: 'text-steel-900',
   },
 ];
 
@@ -47,13 +47,13 @@ const quickActions = [
     label: 'Add New Project',
     href: '/admin/projects/new',
     icon: Plus,
-    bg: 'bg-accent-500 hover:bg-accent-600',
+    bg: 'bg-steel-900 hover:bg-steel-800',
   },
   {
     label: 'Write Blog Post',
     href: '/admin/blogs/new',
     icon: Plus,
-    bg: 'bg-primary-800 hover:bg-primary-900',
+    bg: 'bg-primary-900 hover:bg-primary-800',
   },
   {
     label: 'View Leads',
@@ -67,7 +67,7 @@ export default function AdminDashboardPage() {
   return (
     <div className="space-y-8">
       <div>
-        <h1 className="text-2xl font-bold text-primary-900">Welcome back!</h1>
+        <h1 className="text-2xl font-bold font-display text-primary-900">Welcome back!</h1>
         <p className="text-primary-500 mt-1">
           Here&apos;s an overview of your website content.
         </p>
@@ -98,7 +98,7 @@ export default function AdminDashboardPage() {
       </div>
 
       <div>
-        <h3 className="text-sm font-semibold text-primary-700 uppercase tracking-wider mb-3">
+        <h3 className="text-sm font-semibold font-display text-primary-700 uppercase tracking-wider mb-3">
           Quick Actions
         </h3>
         <div className="flex flex-wrap gap-3">
@@ -107,7 +107,7 @@ export default function AdminDashboardPage() {
               key={action.label}
               href={action.href}
               className={cn(
-                'inline-flex items-center gap-2 px-4 py-2.5 rounded-lg text-sm font-medium text-white transition-colors',
+                'inline-flex items-center gap-2 px-4 py-2.5 rounded-pill text-sm font-medium text-white transition-colors',
                 action.bg
               )}
             >
@@ -125,7 +125,7 @@ export default function AdminDashboardPage() {
           transition={{ duration: 0.3, delay: 0.4 }}
           className="bg-white rounded-xl border border-steel-200 p-6"
         >
-          <h3 className="text-lg font-semibold text-primary-900 mb-4">
+          <h3 className="text-lg font-semibold font-display text-primary-900 mb-4">
             Recent Leads
           </h3>
           <div className="text-center py-8">
@@ -143,7 +143,7 @@ export default function AdminDashboardPage() {
           transition={{ duration: 0.3, delay: 0.5 }}
           className="bg-white rounded-xl border border-steel-200 p-6"
         >
-          <h3 className="text-lg font-semibold text-primary-900 mb-4">
+          <h3 className="text-lg font-semibold font-display text-primary-900 mb-4">
             Recent Projects
           </h3>
           <div className="text-center py-8">

@@ -1,6 +1,6 @@
 'use client';
 
-import { MessageSquare, PenTool, Hammer, Truck } from 'lucide-react';
+import { MessageSquare, PenTool, Calculator, Hammer, CheckCircle } from 'lucide-react';
 import SectionHeader from '@/components/ui/SectionHeader';
 import { StaggerContainer, SlideUp } from '@/components/ui/AnimationWrappers';
 import { cn } from '@/lib/utils';
@@ -8,27 +8,33 @@ import { cn } from '@/lib/utils';
 const steps = [
   {
     number: '01',
-    title: 'Consultation',
-    description: 'We begin by understanding your requirements, site conditions, and project goals through detailed discussions and site assessments.',
+    title: 'Free Consultation',
+    description: 'We understand your requirements, offering expert guidance to help you make informed decisions.',
     icon: MessageSquare,
   },
   {
     number: '02',
-    title: 'Design & Planning',
-    description: 'Our engineering team creates detailed designs, structural calculations, and project plans to ensure precision from the start.',
+    title: 'Design Discussion',
+    description: 'Collaborative sessions to transform ideas into functional, aesthetic, and feasible designs.',
     icon: PenTool,
   },
   {
     number: '03',
-    title: 'Fabrication',
-    description: 'Using state-of-the-art equipment and premium materials, we manufacture each component with meticulous attention to quality.',
-    icon: Hammer,
+    title: 'Project Budgeting',
+    description: 'We prepare a transparent budget without compromising on quality and timelines.',
+    icon: Calculator,
   },
   {
     number: '04',
-    title: 'Delivery & Installation',
-    description: 'Our experienced crew handles transportation and on-site installation, ensuring seamless assembly and structural integrity.',
-    icon: Truck,
+    title: 'Execution Phase',
+    description: 'We bring designs to reality with precision fabrication and installation services.',
+    icon: Hammer,
+  },
+  {
+    number: '05',
+    title: 'Final Handover',
+    description: 'A detailed final review and quality assurance before we deliver the finished product.',
+    icon: CheckCircle,
   },
 ];
 
@@ -37,34 +43,34 @@ export default function ProcessSection() {
     <section className="py-20 md:py-28 bg-white">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <SectionHeader
-          label="HOW WE WORK"
-          title="Our Process"
-          subtitle="A streamlined approach from concept to completion, ensuring quality at every stage."
+          label="OUR PROCESS"
+          title="How We Work"
+          subtitle="We focus on offering our customers what's truly best for them."
         />
 
-        <StaggerContainer className="relative grid md:grid-cols-4 gap-8 md:gap-6">
-          <div className="hidden md:block absolute top-16 left-[calc(12.5%+24px)] right-[calc(12.5%+24px)] h-0.5 bg-gradient-to-r from-accent-300 via-accent-500 to-accent-300" />
+        <StaggerContainer className="relative grid md:grid-cols-5 gap-8 md:gap-6">
+          <div className="hidden md:block absolute top-16 left-[calc(10%+24px)] right-[calc(10%+24px)] h-0.5 bg-gradient-to-r from-steel-300 via-steel-900 to-steel-300" />
 
           {steps.map((step, index) => (
             <SlideUp key={step.number} delay={index * 0.1}>
               <div className="relative flex flex-col items-center text-center">
-                <div className="relative z-10 w-12 h-12 rounded-full bg-accent-500 text-white flex items-center justify-center text-sm font-bold mb-6">
+                <div className="relative z-10 w-12 h-12 rounded-full bg-steel-900 text-white flex items-center justify-center text-sm font-bold mb-6">
                   {step.number}
                 </div>
 
-                <div className="w-14 h-14 rounded-xl bg-primary-50 flex items-center justify-center mb-4">
-                  <step.icon className="w-7 h-7 text-accent-500" />
+                <div className="w-14 h-14 rounded-xl bg-accent-50 flex items-center justify-center mb-4">
+                  <step.icon className="w-7 h-7 text-steel-900" />
                 </div>
 
-                <h3 className="text-lg font-semibold text-primary-950 mb-3">
+                <h3 className="text-lg font-semibold text-primary-900 mb-3 font-display">
                   {step.title}
                 </h3>
-                <p className="text-sm text-primary-500 leading-relaxed">
+                <p className="text-sm text-steel-700 leading-relaxed font-sans">
                   {step.description}
                 </p>
 
                 {index < steps.length - 1 && (
-                  <div className="md:hidden w-0.5 h-8 bg-accent-300 mt-6" />
+                  <div className="md:hidden w-0.5 h-8 bg-steel-300 mt-6" />
                 )}
               </div>
             </SlideUp>

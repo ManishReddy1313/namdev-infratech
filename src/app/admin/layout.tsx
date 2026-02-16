@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react';
 import { useRouter, usePathname } from 'next/navigation';
 import Link from 'next/link';
+import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   LayoutDashboard,
@@ -76,10 +77,10 @@ export default function AdminLayout({
 
   if (isLoading) {
     return (
-      <div className="min-h-screen bg-primary-950 flex items-center justify-center">
+      <div className="min-h-screen bg-steel-900 flex items-center justify-center">
         <div className="flex flex-col items-center gap-4">
-          <div className="w-10 h-10 border-4 border-accent-500 border-t-transparent rounded-full animate-spin" />
-          <p className="text-primary-400 text-sm">Loading...</p>
+          <div className="w-10 h-10 border-4 border-accent-200 border-t-transparent rounded-full animate-spin" />
+          <p className="text-steel-300 text-sm">Loading...</p>
         </div>
       </div>
     );
@@ -98,12 +99,10 @@ export default function AdminLayout({
 
   return (
     <div className="min-h-screen bg-steel-50">
-      <aside className="hidden lg:flex fixed inset-y-0 left-0 z-50 w-64 flex-col bg-primary-950">
-        <div className="p-6 border-b border-primary-800">
-          <h1 className="text-lg font-bold text-white tracking-tight">
-            NAMDEV INFRATECH
-          </h1>
-          <p className="text-primary-400 text-xs mt-1">Admin Panel</p>
+      <aside className="hidden lg:flex fixed inset-y-0 left-0 z-50 w-64 flex-col bg-steel-900">
+        <div className="p-6 border-b border-steel-800">
+          <Image src="/logo.png" alt="Namdev Infratech" width={140} height={48} className="brightness-0 invert" />
+          <p className="text-steel-400 text-xs mt-1">Admin Panel</p>
         </div>
 
         <nav className="flex-1 p-4 space-y-1">
@@ -116,8 +115,8 @@ export default function AdminLayout({
                 className={cn(
                   'flex items-center gap-3 px-4 py-2.5 rounded-lg text-sm font-medium transition-all',
                   isActive
-                    ? 'bg-accent-500 text-white'
-                    : 'text-primary-300 hover:bg-primary-800 hover:text-white'
+                    ? 'bg-steel-800 text-accent-200'
+                    : 'text-steel-300 hover:bg-steel-800 hover:text-accent-200'
                 )}
               >
                 <link.icon className="w-5 h-5" />
@@ -127,10 +126,10 @@ export default function AdminLayout({
           })}
         </nav>
 
-        <div className="p-4 border-t border-primary-800">
+        <div className="p-4 border-t border-steel-800">
           <button
             onClick={handleSignOut}
-            className="flex items-center gap-3 px-4 py-2.5 rounded-lg text-sm font-medium text-primary-300 hover:bg-primary-800 hover:text-white transition-all w-full"
+            className="flex items-center gap-3 px-4 py-2.5 rounded-lg text-sm font-medium text-steel-300 hover:bg-steel-800 hover:text-accent-200 transition-all w-full"
           >
             <LogOut className="w-5 h-5" />
             Sign Out
@@ -138,10 +137,8 @@ export default function AdminLayout({
         </div>
       </aside>
 
-      <div className="lg:hidden fixed top-0 left-0 right-0 z-40 bg-primary-950 px-4 py-3 flex items-center justify-between">
-        <h1 className="text-sm font-bold text-white tracking-tight">
-          NAMDEV INFRATECH
-        </h1>
+      <div className="lg:hidden fixed top-0 left-0 right-0 z-40 bg-steel-900 px-4 py-3 flex items-center justify-between">
+        <Image src="/logo.png" alt="Namdev Infratech" width={120} height={40} className="brightness-0 invert" />
         <button
           onClick={() => setSidebarOpen(true)}
           className="text-white p-2"
@@ -165,18 +162,16 @@ export default function AdminLayout({
               animate={{ x: 0 }}
               exit={{ x: -280 }}
               transition={{ type: 'spring', damping: 25, stiffness: 200 }}
-              className="lg:hidden fixed inset-y-0 left-0 z-50 w-72 flex flex-col bg-primary-950"
+              className="lg:hidden fixed inset-y-0 left-0 z-50 w-72 flex flex-col bg-steel-900"
             >
-              <div className="p-6 border-b border-primary-800 flex items-center justify-between">
+              <div className="p-6 border-b border-steel-800 flex items-center justify-between">
                 <div>
-                  <h1 className="text-lg font-bold text-white tracking-tight">
-                    NAMDEV INFRATECH
-                  </h1>
-                  <p className="text-primary-400 text-xs mt-1">Admin Panel</p>
+                  <Image src="/logo.png" alt="Namdev Infratech" width={140} height={48} className="brightness-0 invert" />
+                  <p className="text-steel-400 text-xs mt-1">Admin Panel</p>
                 </div>
                 <button
                   onClick={() => setSidebarOpen(false)}
-                  className="text-primary-400 hover:text-white"
+                  className="text-steel-400 hover:text-white"
                 >
                   <X className="w-5 h-5" />
                 </button>
@@ -193,8 +188,8 @@ export default function AdminLayout({
                       className={cn(
                         'flex items-center gap-3 px-4 py-2.5 rounded-lg text-sm font-medium transition-all',
                         isActive
-                          ? 'bg-accent-500 text-white'
-                          : 'text-primary-300 hover:bg-primary-800 hover:text-white'
+                          ? 'bg-steel-800 text-accent-200'
+                          : 'text-steel-300 hover:bg-steel-800 hover:text-accent-200'
                       )}
                     >
                       <link.icon className="w-5 h-5" />
@@ -204,10 +199,10 @@ export default function AdminLayout({
                 })}
               </nav>
 
-              <div className="p-4 border-t border-primary-800">
+              <div className="p-4 border-t border-steel-800">
                 <button
                   onClick={handleSignOut}
-                  className="flex items-center gap-3 px-4 py-2.5 rounded-lg text-sm font-medium text-primary-300 hover:bg-primary-800 hover:text-white transition-all w-full"
+                  className="flex items-center gap-3 px-4 py-2.5 rounded-lg text-sm font-medium text-steel-300 hover:bg-steel-800 hover:text-accent-200 transition-all w-full"
                 >
                   <LogOut className="w-5 h-5" />
                   Sign Out
@@ -220,10 +215,10 @@ export default function AdminLayout({
 
       <main className="lg:ml-64 min-h-screen pt-14 lg:pt-0">
         <div className="bg-white border-b border-steel-200 px-6 py-4 flex items-center justify-between">
-          <h2 className="text-lg font-semibold text-primary-900">{currentTitle}</h2>
+          <h2 className="text-lg font-semibold font-display text-primary-900">{currentTitle}</h2>
           <div className="flex items-center gap-3">
             <span className="text-sm text-primary-500 hidden sm:block">{userEmail}</span>
-            <div className="w-8 h-8 bg-accent-500 rounded-full flex items-center justify-center">
+            <div className="w-8 h-8 bg-steel-900 rounded-full flex items-center justify-center">
               <span className="text-white text-xs font-bold">
                 {userEmail.charAt(0).toUpperCase()}
               </span>

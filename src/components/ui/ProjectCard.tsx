@@ -38,10 +38,10 @@ export default function ProjectCard({ project, className }: ProjectCardProps) {
           <div className="absolute top-3 left-3">
             <span
               className={cn(
-                'inline-block px-3 py-1 text-xs font-semibold uppercase tracking-wider rounded-full text-white',
+                'inline-block px-3 py-1 text-xs font-semibold uppercase tracking-wider rounded-full',
                 project.category === 'creative'
-                  ? 'bg-accent-500'
-                  : 'bg-steel-600'
+                  ? 'bg-accent-200 text-steel-900'
+                  : 'bg-steel-900 text-white'
               )}
             >
               {project.category}
@@ -49,7 +49,7 @@ export default function ProjectCard({ project, className }: ProjectCardProps) {
           </div>
         </div>
         <div className="p-5">
-          <h3 className="text-lg font-semibold text-primary-950 group-hover:text-accent-600 transition-colors duration-300">
+          <h3 className="text-lg font-semibold font-display text-primary-900 group-hover:text-steel-900 transition-colors duration-300">
             {project.title}
           </h3>
           <p className="mt-2 text-sm text-primary-500 leading-relaxed">

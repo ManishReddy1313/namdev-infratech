@@ -20,9 +20,9 @@ export default function FeaturedProjects() {
     <section className="py-20 md:py-28 bg-primary-50">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <SectionHeader
-          label="OUR WORK"
-          title="Featured Projects"
-          subtitle="Explore our portfolio of industrial fabrication and creative metalwork projects delivered with precision and excellence."
+          label="OUR PRODUCTS"
+          title="Durable Structural Solutions"
+          subtitle="Reliable and quality materials for every project"
         />
 
         <StaggerContainer className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -36,7 +36,7 @@ export default function FeaturedProjects() {
         <div className="mt-12 text-center">
           <Link
             href="/projects"
-            className="inline-flex items-center gap-2 px-8 py-4 bg-primary-950 hover:bg-primary-800 text-white font-semibold rounded-lg transition-colors duration-300"
+            className="btn-secondary inline-flex items-center gap-2 px-8 py-4"
           >
             View All Projects
             <ArrowRight className="w-5 h-5" />

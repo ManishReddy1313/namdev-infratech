@@ -34,7 +34,7 @@ export default function BlogPostPage() {
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center">
-        <div className="w-8 h-8 border-4 border-accent-500 border-t-transparent rounded-full animate-spin" />
+        <div className="w-8 h-8 border-4 border-steel-900 border-t-transparent rounded-full animate-spin" />
       </div>
     );
   }
@@ -43,7 +43,7 @@ export default function BlogPostPage() {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
-          <h1 className="heading-2 text-primary-950 mb-4">Post Not Found</h1>
+          <h1 className="heading-2 text-primary-900 mb-4 font-display">Post Not Found</h1>
           <p className="text-body mb-8">The blog post you're looking for doesn't exist.</p>
           <Link href="/blog" className="btn-primary">
             Back to Blog
@@ -58,8 +58,8 @@ export default function BlogPostPage() {
 
   return (
     <>
-      <section className="relative bg-primary-950 py-16 md:py-24">
-        <div className="absolute inset-0 bg-gradient-to-br from-primary-950 via-primary-900 to-steel-950" />
+      <section className="relative bg-steel-900 py-16 md:py-24">
+        <div className="absolute inset-0 bg-gradient-to-br from-steel-900 via-primary-900 to-steel-950" />
         <div className="container-custom relative z-10">
           <FadeIn>
             <Link
@@ -71,12 +71,12 @@ export default function BlogPostPage() {
             </Link>
           </FadeIn>
           <SlideUp>
-            <span className="inline-block px-4 py-1.5 text-xs font-semibold uppercase tracking-wider rounded-full bg-accent-500 text-white mb-4">
+            <span className="inline-block px-4 py-1.5 text-xs font-semibold uppercase tracking-wider rounded-full bg-steel-900 text-white border border-steel-700 mb-4">
               {blog.category}
             </span>
           </SlideUp>
           <SlideUp delay={0.1}>
-            <h1 className="heading-1 text-white mb-6 max-w-4xl">{blog.title}</h1>
+            <h1 className="heading-1 text-white mb-6 max-w-4xl font-display">{blog.title}</h1>
           </SlideUp>
           <SlideUp delay={0.2}>
             <div className="flex flex-wrap items-center gap-6 text-primary-300">
@@ -120,14 +120,14 @@ export default function BlogPostPage() {
                     <span className="text-sm font-medium">Share this article</span>
                   </div>
                   <div className="flex gap-3">
-                    <button className="w-10 h-10 rounded-full bg-primary-100 hover:bg-primary-200 flex items-center justify-center transition-colors">
-                      <Facebook className="w-4 h-4 text-primary-600" />
+                    <button className="w-10 h-10 rounded-full bg-steel-900 hover:bg-steel-800 flex items-center justify-center transition-colors">
+                      <Facebook className="w-4 h-4 text-white" />
                     </button>
-                    <button className="w-10 h-10 rounded-full bg-primary-100 hover:bg-primary-200 flex items-center justify-center transition-colors">
-                      <Twitter className="w-4 h-4 text-primary-600" />
+                    <button className="w-10 h-10 rounded-full bg-steel-900 hover:bg-steel-800 flex items-center justify-center transition-colors">
+                      <Twitter className="w-4 h-4 text-white" />
                     </button>
-                    <button className="w-10 h-10 rounded-full bg-primary-100 hover:bg-primary-200 flex items-center justify-center transition-colors">
-                      <Linkedin className="w-4 h-4 text-primary-600" />
+                    <button className="w-10 h-10 rounded-full bg-steel-900 hover:bg-steel-800 flex items-center justify-center transition-colors">
+                      <Linkedin className="w-4 h-4 text-white" />
                     </button>
                   </div>
                 </div>
@@ -135,13 +135,13 @@ export default function BlogPostPage() {
             </FadeIn>
 
             <FadeIn>
-              <div className="mt-12 p-6 bg-primary-50 rounded-xl">
+              <div className="mt-12 p-6 bg-accent-200/50 rounded-xl">
                 <div className="flex items-center gap-4">
-                  <div className="w-16 h-16 rounded-full bg-gradient-to-br from-accent-500 to-accent-700 flex items-center justify-center text-white text-xl font-bold">
+                  <div className="w-16 h-16 rounded-full bg-gradient-to-br from-steel-900 to-steel-700 flex items-center justify-center text-white text-xl font-bold">
                     NI
                   </div>
                   <div>
-                    <h4 className="font-semibold text-primary-950">Namdev Infratech Team</h4>
+                    <h4 className="font-semibold font-display text-primary-900">Namdev Infratech Team</h4>
                     <p className="text-sm text-primary-500">
                       Experts in structural steel fabrication, industrial construction, and creative metalwork with over a decade of experience.
                     </p>
@@ -157,7 +157,7 @@ export default function BlogPostPage() {
         <section className="section-padding bg-primary-50">
           <div className="container-custom">
             <FadeIn className="text-center mb-12">
-              <h2 className="heading-2 text-primary-950">Related Posts</h2>
+              <h2 className="heading-2 text-primary-900 font-display">Related Posts</h2>
             </FadeIn>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-5xl mx-auto">
               {relatedPosts.map((post) => (

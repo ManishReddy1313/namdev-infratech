@@ -34,7 +34,7 @@ export default function BlogCard({ blog, className }: BlogCardProps) {
             </div>
           )}
           <div className="absolute top-3 left-3">
-            <span className="inline-block px-3 py-1 text-xs font-semibold uppercase tracking-wider rounded-full bg-accent-500 text-white">
+            <span className="inline-block px-3 py-1 text-xs font-semibold uppercase tracking-wider rounded-full bg-steel-900 text-white">
               {blog.category}
             </span>
           </div>
@@ -43,13 +43,13 @@ export default function BlogCard({ blog, className }: BlogCardProps) {
           <p className="text-xs text-primary-400 mb-2">
             {formatDate(blog.created_at)}
           </p>
-          <h3 className="text-lg font-semibold text-primary-950 group-hover:text-accent-600 transition-colors duration-300">
+          <h3 className="text-lg font-semibold font-display text-primary-900 group-hover:text-steel-900 transition-colors duration-300">
             {blog.title}
           </h3>
           <p className="mt-2 text-sm text-primary-500 leading-relaxed">
             {truncateText(blog.content, 120)}
           </p>
-          <span className="inline-block mt-3 text-sm font-medium text-accent-600 group-hover:text-accent-700 transition-colors">
+          <span className="inline-block mt-3 text-sm font-medium text-steel-900 group-hover:text-steel-700 transition-colors">
             Read More →
           </span>
         </div>

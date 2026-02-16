@@ -55,12 +55,12 @@ export default function AdminBlogsPage() {
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-2xl font-bold text-primary-900">Blog Posts</h1>
+          <h1 className="text-2xl font-bold font-display text-primary-900">Blog Posts</h1>
           <p className="text-primary-500 mt-1">Manage your blog content</p>
         </div>
         <Link
           href="/admin/blogs/new"
-          className="inline-flex items-center gap-2 px-4 py-2.5 bg-accent-500 hover:bg-accent-600 text-white rounded-lg text-sm font-medium transition-colors"
+          className="inline-flex items-center gap-2 px-4 py-2.5 bg-steel-900 hover:bg-steel-800 text-white rounded-pill text-sm font-medium transition-colors"
         >
           <Plus className="w-4 h-4" />
           Add New Post
@@ -76,7 +76,7 @@ export default function AdminBlogsPage() {
           </p>
           <Link
             href="/admin/blogs/new"
-            className="inline-flex items-center gap-2 mt-4 px-4 py-2 bg-accent-500 hover:bg-accent-600 text-white rounded-lg text-sm font-medium transition-colors"
+            className="inline-flex items-center gap-2 mt-4 px-4 py-2 bg-steel-900 hover:bg-steel-800 text-white rounded-pill text-sm font-medium transition-colors"
           >
             <Plus className="w-4 h-4" />
             Add New Post
@@ -114,7 +114,7 @@ export default function AdminBlogsPage() {
                       'inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-medium',
                       blog.published
                         ? 'bg-green-100 text-green-700'
-                        : 'bg-primary-100 text-primary-600'
+                        : 'bg-steel-100 text-steel-600'
                     )}
                   >
                     {blog.published ? (
@@ -131,7 +131,7 @@ export default function AdminBlogsPage() {
                 <div className="md:col-span-2 flex items-center gap-2 md:justify-end">
                   <Link
                     href={`/admin/blogs/edit/${blog.id}`}
-                    className="inline-flex items-center gap-1.5 px-3 py-1.5 text-sm text-steel-700 hover:text-accent-600 hover:bg-accent-50 rounded-lg transition-colors"
+                    className="inline-flex items-center gap-1.5 px-3 py-1.5 text-sm text-steel-700 hover:text-steel-900 hover:bg-steel-50 rounded-lg transition-colors"
                   >
                     <Edit className="w-4 h-4" />
                     <span className="md:hidden lg:inline">Edit</span>

@@ -9,6 +9,7 @@ import { z } from 'zod';
 import { ArrowLeft, Upload, Loader2, Image as ImageIcon, Bold, Italic, Heading, X } from 'lucide-react';
 import { cn, generateSlug } from '@/lib/utils';
 import { supabase } from '@/lib/supabase';
+import type { Blog } from '@/types/database';
 
 const blogSchema = z.object({
   title: z.string().min(1, 'Title is required'),
@@ -64,7 +65,7 @@ export default function EditBlogPage() {
         .from('blogs')
         .select('*')
         .eq('id', id)
-        .single();
+        .single<Blog>();
 
       if (data) {
         reset({

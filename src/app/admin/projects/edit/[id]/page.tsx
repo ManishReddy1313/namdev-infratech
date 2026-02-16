@@ -9,6 +9,7 @@ import { z } from 'zod';
 import { ArrowLeft, Plus, X, Upload, Loader2, Image as ImageIcon } from 'lucide-react';
 import { cn, generateSlug } from '@/lib/utils';
 import { supabase } from '@/lib/supabase';
+import type { Project } from '@/types/database';
 
 const projectSchema = z.object({
   title: z.string().min(1, 'Title is required'),
@@ -63,7 +64,7 @@ export default function EditProjectPage() {
         .from('projects')
         .select('*')
         .eq('id', id)
-        .single();
+        .single<Project>();
 
       if (data) {
         reset({

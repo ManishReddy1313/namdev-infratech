@@ -33,7 +33,7 @@ export default function AdminLeadsPage() {
       .select('*')
       .order('created_at', { ascending: false });
 
-    if (data) setLeads(data);
+    if (data) setLeads(data as Lead[]);
     setLoading(false);
   };
 

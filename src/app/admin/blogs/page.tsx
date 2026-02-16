@@ -18,7 +18,7 @@ export default function AdminBlogsPage() {
       .select('*')
       .order('created_at', { ascending: false });
 
-    if (data) setBlogs(data);
+    if (data) setBlogs(data as Blog[]);
     setLoading(false);
   };
 

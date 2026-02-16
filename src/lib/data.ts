@@ -180,7 +180,7 @@ export async function getProjects(category?: string): Promise<Project[]> {
     try {
       let query = supabase.from('projects').select('*').order('created_at', { ascending: false });
       if (category && category !== 'all') {
-        query = query.eq('category', category);
+        query = query.eq('category', category as 'industrial' | 'creative');
       }
       const { data, error } = await query;
       if (!error && data && data.length > 0) return data as Project[];

@@ -18,7 +18,7 @@ export default function AdminProjectsPage() {
       .select('*')
       .order('created_at', { ascending: false });
 
-    if (data) setProjects(data);
+    if (data) setProjects(data as Project[]);
     setLoading(false);
   };
 

@@ -6,7 +6,7 @@ import { FadeIn, ParallaxSection } from '@/components/ui/AnimationWrappers';
 
 export default function CreativeHighlight() {
   return (
-    <ParallaxSection className="relative py-28 md:py-36">
+    <section className="relative py-20 md:py-24 overflow-hidden">
       <div className="absolute inset-0 bg-primary-900" />
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-steel-900/30 via-transparent to-transparent" />
 
@@ -31,7 +31,7 @@ export default function CreativeHighlight() {
             <p className="mt-6 text-lg text-accent-200/80 leading-relaxed font-sans">
               At Namdev Infratech, after two decades of delivering top-quality steel, we've expanded our offerings to meet the evolving needs of our clients. Our expertise now spans custom fabrication, laser cutting, HR plate cutting, and precision engineering.
             </p>
-            <div className="mt-10">
+            <div className="mt-10 mb-4">
               <Link
                 href="/projects"
                 className="btn-primary inline-flex items-center gap-2 px-8 py-4"
@@ -43,6 +43,6 @@ export default function CreativeHighlight() {
           </FadeIn>
         </div>
       </div>
-    </ParallaxSection>
+    </section>
   );
 }

@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { Suspense, useState } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -60,7 +60,7 @@ const contactInfo = [
   },
 ];
 
-export default function ContactPage() {
+function ContactPageContent() {
   const searchParams = useSearchParams();
   const projectName = searchParams.get('project');
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
@@ -321,5 +321,13 @@ export default function ContactPage() {
         </div>
       </section>
     </>
+  );
+}
+
+export default function ContactPage() {
+  return (
+    <Suspense fallback={<div className="min-h-screen flex items-center justify-center"><div className="w-8 h-8 border-4 border-steel-900 border-t-transparent rounded-full animate-spin" /></div>}>
+      <ContactPageContent />
+    </Suspense>
   );
 }

@@ -39,7 +39,7 @@ const features = [
 
 export default function CredibilitySection() {
   return (
-    <section className="py-20 md:py-28 bg-primary-50">
+    <section className="py-20 md:py-28 bg-accent-100/50">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <SectionHeader
           label="WHY US"

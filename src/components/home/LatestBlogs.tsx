@@ -17,7 +17,7 @@ export default function LatestBlogs() {
   }, []);
 
   return (
-    <section className="py-20 md:py-28 bg-white">
+    <section className="py-20 md:py-28 bg-accent-50">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <SectionHeader
           label="INSIGHTS"

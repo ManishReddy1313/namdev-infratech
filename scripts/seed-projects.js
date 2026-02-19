@@ -17,7 +17,7 @@ From initial concept sketches to on-site installation, we worked closely with th
 
 At Namdev Infratech, we believe that even the smallest detail in a home deserves the same dedication as the grandest structure. This project is a testament to that philosophy.`,
     category: "creative",
-    gallery: [],
+    gallery: ["/uploads/projects/basapura-railing-1.jpg", "/uploads/projects/basapura-railing-2.jpg", "/uploads/projects/basapura-railing-3.jpg", "/uploads/projects/basapura-railing-4.jpg"],
     materials: ["Mild Steel", "Powder Coating", "Custom Metal Finish"],
     client_type: "Residential Villa Owner",
     featured: false,
@@ -35,7 +35,7 @@ Every element was carefully considered: the proportions, the finish, the structu
 
 This project showcases our versatility at Namdev Infratech — from heavy industrial structures to refined retail solutions, we bring the same passion, precision, and professionalism to every project we undertake.`,
     category: "creative",
-    gallery: [],
+    gallery: ["/uploads/projects/boutique-display-1.jpg", "/uploads/projects/boutique-display-2.jpg", "/uploads/projects/boutique-display-3.jpg", "/uploads/projects/boutique-display-4.jpg"],
     materials: ["Mild Steel", "Gold Powder Coating", "Custom Metalwork"],
     client_type: "Fashion Boutique",
     featured: false,
@@ -71,7 +71,7 @@ Every weld was ground smooth, every joint was measured twice and cut once, and t
 
 At Namdev Infratech, we understand that furniture is personal. That's why we craft each piece to order, ensuring it fits not just the space, but the person who'll use it every day.`,
     category: "creative",
-    gallery: [],
+    gallery: ["/uploads/projects/computer-table-1.jpg", "/uploads/projects/computer-table-2.jpg", "/uploads/projects/computer-table-3.jpg"],
     materials: ["Mild Steel Frame", "Finger Joint Pine Wood", "Industrial Hardware"],
     client_type: "Individual Client",
     featured: false,
@@ -89,7 +89,7 @@ This proposal showcased multiple design options — from minimalist modern lines
 
 At Namdev Infratech, we believe that the design phase is just as important as the fabrication. That's why we invest in cutting-edge 3D design tools and a talented design team — because your dream deserves to be seen before it's built.`,
     category: "creative",
-    gallery: [],
+    gallery: ["/uploads/projects/concept-proposal-1.jpg", "/uploads/projects/concept-proposal-2.jpg", "/uploads/projects/concept-proposal-3.jpg", "/uploads/projects/concept-proposal-4.jpg", "/uploads/projects/concept-proposal-5.jpg"],
     materials: ["3D Design & Visualization", "Concept Development"],
     client_type: "Residential Client",
     featured: false,
@@ -110,6 +110,7 @@ This collaboration with interior designers is something we cherish at Namdev Inf
     gallery: [],
     materials: ["Quartz Top", "Custom Metal Frame", "Precision Welding", "Premium Finish"],
     client_type: "Interior Design Company",
+
     featured: false,
     seo_title: "Custom Quartz Top Dining Table with Metal Frame | Namdev Infratech",
     seo_description: "Bespoke quartz-top dining table with custom metal frame designed for an interior design firm. Premium metal furniture crafted by Namdev Infratech."
@@ -125,7 +126,7 @@ The wood grain deco painting technique is one of our specialities — it gives t
 
 This renovation project was a labour of love, and the gate now stands as a proud introduction to a beautiful home. At Namdev Infratech, we don't just build gates — we craft first impressions.`,
     category: "creative",
-    gallery: [],
+    gallery: ["/uploads/projects/dr-rashmi-gate-1.jpg", "/uploads/projects/dr-rashmi-gate-2.jpg", "/uploads/projects/dr-rashmi-gate-3.jpg", "/uploads/projects/dr-rashmi-gate-4.jpg", "/uploads/projects/dr-rashmi-gate-5.jpg"],
     materials: ["MS Pipe Frame", "Deco Paint Wood Grain Finish", "On-site Installation"],
     client_type: "Residential Renovation",
     featured: false,
@@ -145,7 +146,7 @@ Working with the landscaping company, we coordinated every aspect — from struc
 
 This project represents Namdev Infratech at our best: engineering excellence, aesthetic sensitivity, and end-to-end project management that our partners can rely on.`,
     category: "creative",
-    gallery: [],
+    gallery: ["/uploads/projects/hebbal-pergola-1.jpg", "/uploads/projects/hebbal-pergola-2.jpg", "/uploads/projects/hebbal-pergola-3.jpg", "/uploads/projects/hebbal-pergola-4.jpg"],
     materials: ["Structural Steel Frame", "Tempered Glass Roof Panels", "Powder Coating", "Weather Sealing"],
     client_type: "Landscaping Company",
     featured: true,
@@ -163,7 +164,7 @@ Every component was stress-tested and optimised for both portability and strengt
 
 This project is a perfect example of why custom fabrication matters. When your passion depends on your equipment, you need furniture that's built to perform — not just to sit there. Karan's table is built to move the crowd.`,
     category: "creative",
-    gallery: [],
+    gallery: ["/uploads/projects/karans-table-1.jpg", "/uploads/projects/karans-table-2.jpg", "/uploads/projects/karans-table-3.jpg", "/uploads/projects/karans-table-4.jpg"],
     materials: ["Heavy Gauge Mild Steel", "Modular Joint System", "Anti-vibration Design", "Powder Coating"],
     client_type: "Professional DJ",
     featured: false,
@@ -181,7 +182,7 @@ The metal pipe design was chosen for its durability in high-humidity kitchen env
 
 This project demonstrates our ability to deliver practical, durable solutions for commercial environments. At Namdev Infratech, we understand that in the food industry, every square foot matters — and our fabrication ensures none of it goes to waste.`,
     category: "creative",
-    gallery: [],
+    gallery: ["/uploads/projects/kitchen-partition-1.jpg", "/uploads/projects/kitchen-partition-2.jpg", "/uploads/projects/kitchen-partition-3.jpg", "/uploads/projects/kitchen-partition-4.jpg"],
     materials: ["MS Pipes", "Floor & Ceiling Mounting", "Industrial Finish"],
     client_type: "Cloud Kitchen Operator",
     featured: false,
@@ -199,7 +200,7 @@ Working with interior designers requires a special kind of precision — toleran
 
 This ongoing collaboration is one we're proud of. It represents the trust that design professionals place in Namdev Infratech — knowing that when they need custom metalwork, we'll deliver quality that elevates their designs.`,
     category: "creative",
-    gallery: [],
+    gallery: ["/uploads/projects/fabricated-structures-2-1.jpg", "/uploads/projects/fabricated-structures-2-2.jpg", "/uploads/projects/fabricated-structures-2-3.jpg", "/uploads/projects/fabricated-structures-2-4.jpg"],
     materials: ["Mild Steel", "Custom Fabrication", "Precision Welding", "Various Finishes"],
     client_type: "Interior Design Company",
     featured: false,
@@ -235,7 +236,7 @@ The warehouse was engineered for maximum usable space with clear-span constructi
 
 This project represents the industrial backbone of Namdev Infratech. It's where our roots in structural steel shine brightest — in large-scale projects that demand engineering precision, fabrication excellence, and project management discipline. This warehouse isn't just a building; it's a promise of strength that stands tall.`,
     category: "industrial",
-    gallery: [],
+    gallery: ["/uploads/projects/namdev-warehouse-1.jpg", "/uploads/projects/namdev-warehouse-2.jpg", "/uploads/projects/namdev-warehouse-3.jpg", "/uploads/projects/namdev-warehouse-4.jpg", "/uploads/projects/namdev-warehouse-5.jpg"],
     materials: ["Structural Steel", "MS Beams", "MS Columns", "Metal Roofing Sheets", "Foundation Work"],
     client_type: "Industrial Client",
     featured: true,
@@ -253,7 +254,7 @@ The structure's clean lines and robust construction ensure it can handle Bangalo
 
 Every turnkey project we undertake at Namdev Infratech follows the same principle: we don't leave until the client is delighted. This pergola didn't just add a structure to a terrace — it added a lifestyle to a home.`,
     category: "creative",
-    gallery: ["/uploads/projects/peenya-pergola-1.jpg", "/uploads/projects/peenya-pergola-3.jpg", "/uploads/projects/peenya-pergola-4.jpg"],
+    gallery: ["/uploads/projects/peenya-pergola-1.jpg", "/uploads/projects/peenya-pergola-3.jpg", "/uploads/projects/peenya-pergola-4.jpg", "/uploads/projects/peenya-pergola-5.jpg"],
     materials: ["Structural Steel", "Powder Coating", "Weather-resistant Finish"],
     client_type: "Residential Villa Owner",
     featured: true,
@@ -273,7 +274,7 @@ Installation was completed with minimal disruption, and the finished pergola was
 
 At Namdev Infratech, we understand that the best structures are the ones that disappear into the lifestyle they create. This pergola does exactly that.`,
     category: "creative",
-    gallery: [],
+    gallery: ["/uploads/projects/pergola-residential-1.jpg", "/uploads/projects/pergola-residential-2.jpg", "/uploads/projects/pergola-residential-3.jpg", "/uploads/projects/pergola-residential-4.jpg"],
     materials: ["Mild Steel", "Powder Coating", "Lattice Design", "Custom Color Finish"],
     client_type: "Residential Client",
     featured: false,
@@ -295,7 +296,7 @@ The Open Shelving Rack: Custom metal open shelves fabricated, black powder coate
 
 This project showcases the breadth of our creative fabrication capabilities. Three different pieces, three different challenges, one consistent standard of excellence.`,
     category: "creative",
-    gallery: [],
+    gallery: ["/uploads/projects/purva-westend-1.jpg", "/uploads/projects/purva-westend-2.jpg", "/uploads/projects/purva-westend-3.jpg", "/uploads/projects/purva-westend-4.jpg", "/uploads/projects/purva-westend-5.jpg"],
     materials: ["MS Pipe Frame", "Black Powder Coating", "Finger Joint Pine Wood", "Resin Top", "Custom Metal Frame"],
     client_type: "Interior Design Firm",
     featured: true,
@@ -335,7 +336,7 @@ What sets these projects apart is our ability to customise. No two industrial en
 
 This collection is a testament to the industrial heart of Namdev Infratech — where engineering precision meets real-world application.`,
     category: "industrial",
-    gallery: [],
+    gallery: ["/uploads/projects/fabricated-structures-1.jpg", "/uploads/projects/fabricated-structures-2.jpg", "/uploads/projects/fabricated-structures-3.jpg", "/uploads/projects/fabricated-structures-4.jpg"],
     materials: ["Structural Steel", "MS Beams", "MS Angles", "MS Plates", "Industrial Coatings"],
     client_type: "Industrial & Commercial Clients",
     featured: false,

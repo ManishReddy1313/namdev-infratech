@@ -95,10 +95,10 @@ export default function HeroSlider() {
                   <ArrowRight className="w-5 h-5" />
                 </Link>
                 <Link
-                  href="/products"
+                  href="/projects"
                   className="inline-flex items-center justify-center gap-2 px-8 py-4 border-2 border-white/60 hover:border-white text-white font-semibold rounded-pill transition-colors duration-300"
                 >
-                  Browse Products
+                  Browse Projects
                   <ChevronRight className="w-5 h-5" />
                 </Link>
               </motion.div>

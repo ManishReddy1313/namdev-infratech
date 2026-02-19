@@ -10,13 +10,7 @@ import SectionHeader from '@/components/ui/SectionHeader';
 import { FadeIn, SlideUp, SlideIn } from '@/components/ui/AnimationWrappers';
 import { cn } from '@/lib/utils';
 import { ArrowLeft, Calendar, Layers, Users } from 'lucide-react';
-
-const galleryPlaceholders = [
-  'from-steel-600 to-steel-800',
-  'from-primary-700 to-primary-900',
-  'from-steel-700 to-steel-900',
-  'from-steel-700 to-primary-800',
-];
+import Image from 'next/image';
 
 export default function ProjectDetailPage() {
   const params = useParams();
@@ -104,29 +98,56 @@ export default function ProjectDetailPage() {
         <div className="container-custom">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
             <div className="lg:col-span-2">
-              <FadeIn>
-                <div
-                  className={cn(
-                    'w-full aspect-[16/10] rounded-xl bg-gradient-to-br',
-                    galleryPlaceholders[activeImage % galleryPlaceholders.length]
+              {project.gallery && project.gallery.length > 0 ? (
+                <>
+                  <FadeIn>
+                    <div className="relative w-full aspect-[16/10] rounded-xl overflow-hidden bg-primary-100">
+                      <Image
+                        src={project.gallery[activeImage] || project.gallery[0]}
+                        alt={`${project.title} - Image ${activeImage + 1}`}
+                        fill
+                        className="object-cover"
+                        sizes="(max-width: 1024px) 100vw, 66vw"
+                        unoptimized
+                      />
+                    </div>
+                  </FadeIn>
+                  {project.gallery.length > 1 && (
+                    <div className="flex gap-3 mt-4 overflow-x-auto pb-2">
+                      {project.gallery.map((img, index) => (
+                        <button
+                          key={index}
+                          onClick={() => setActiveImage(index)}
+                          className={cn(
+                            'relative w-20 h-16 rounded-lg overflow-hidden flex-shrink-0 transition-all duration-300',
+                            activeImage === index
+                              ? 'ring-2 ring-steel-900 ring-offset-2'
+                              : 'opacity-60 hover:opacity-100'
+                          )}
+                        >
+                          <Image
+                            src={img}
+                            alt={`${project.title} thumbnail ${index + 1}`}
+                            fill
+                            className="object-cover"
+                            sizes="80px"
+                            unoptimized
+                          />
+                        </button>
+                      ))}
+                    </div>
                   )}
-                />
-              </FadeIn>
-              <div className="flex gap-3 mt-4">
-                {galleryPlaceholders.map((gradient, index) => (
-                  <button
-                    key={index}
-                    onClick={() => setActiveImage(index)}
-                    className={cn(
-                      'w-20 h-16 rounded-lg bg-gradient-to-br transition-all duration-300',
-                      gradient,
-                      activeImage === index
-                        ? 'ring-2 ring-steel-900 ring-offset-2'
-                        : 'opacity-60 hover:opacity-100'
-                    )}
-                  />
-                ))}
-              </div>
+                </>
+              ) : (
+                <FadeIn>
+                  <div className="w-full aspect-[16/10] rounded-xl bg-gradient-to-br from-steel-700 to-primary-900 flex items-center justify-center">
+                    <div className="text-center text-white/70">
+                      <Layers className="w-16 h-16 mx-auto mb-3 opacity-50" />
+                      <p className="text-sm font-medium">Project Gallery</p>
+                    </div>
+                  </div>
+                </FadeIn>
+              )}
 
               <div className="mt-12">
                 <SlideUp>

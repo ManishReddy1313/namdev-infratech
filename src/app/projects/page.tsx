@@ -8,9 +8,9 @@ import { FadeIn, SlideUp, StaggerContainer } from '@/components/ui/AnimationWrap
 import { cn } from '@/lib/utils';
 
 const categories = [
-  { label: 'All', value: 'all' },
-  { label: 'Industrial Projects', value: 'industrial' },
-  { label: 'Creative Custom Projects', value: 'creative' },
+  { label: 'All Projects', value: 'all' },
+  { label: 'Industrial', value: 'industrial' },
+  { label: 'Creative & Custom', value: 'creative' },
 ];
 
 export default function ProjectsPage() {

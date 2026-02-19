@@ -39,4 +39,4 @@ run = ["npm", "run", "start"]
 
 [nix]
 channel = "stable-25_05"
-packages = ["imagemagick"]
+packages = ["imagemagick", "unzip"]

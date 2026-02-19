@@ -31,7 +31,7 @@ const showcases = [
     description:
       'Our master artisans transform raw metal into breathtaking works of art. From monumental outdoor installations to intimate gallery pieces, we craft sculptures that captivate and inspire. Every curve, texture, and finish is meticulously executed to bring artistic visions to life in steel, brass, copper, and stainless steel.',
     features: ['Custom Commissions', 'Public Art Installations', 'Corporate Lobby Pieces', 'Garden Sculptures'],
-    slugs: ['dr-rashmi-villa-main-gate', 'basapura-villa-railing', 'custom-metal-stands-frames'],
+    slugs: ['custom-cnc-sculpture-nefertiti', 'dr-rashmi-villa-main-gate', 'basapura-villa-railing'],
   },
   {
     title: 'Custom Furniture & Fixtures',

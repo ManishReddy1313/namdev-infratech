@@ -7,6 +7,22 @@ const pool = new Pool({
 
 const projects = [
   {
+    title: "Custom CNC Sculpture — Nefertiti Silhouette",
+    slug: "custom-cnc-sculpture-nefertiti",
+    description: `This striking CNC-cut sculpture draws inspiration from the iconic silhouette of Queen Nefertiti, reimagined through the lens of modern metal fabrication. Built from layered corten steel sheets, each layer is precision-cut on our CNC plasma table and hand-assembled with brass rod accents that add depth and warmth to the piece.
+
+The sculpture stands as a testament to what happens when ancient artistry meets contemporary engineering — a conversation starter designed for exhibition displays, corporate lobbies, and collector showcases.
+
+First unveiled at the BNI networking event in Bangalore, this piece embodies the creative soul of Namdev Infratech — proving that infrastructure-grade steel can be just as expressive as any fine art medium.`,
+    category: "creative",
+    gallery: ["/uploads/projects/custom-sculpture-1.jpg", "/uploads/projects/custom-sculpture-2.jpg", "/uploads/projects/custom-sculpture-3.jpg", "/uploads/projects/custom-sculpture-4.jpg", "/uploads/projects/custom-sculpture-5.jpg"],
+    materials: ["Corten Steel", "Brass Rods", "CNC Plasma Cut"],
+    client_type: "Exhibition & Display",
+    featured: true,
+    seo_title: "Custom CNC Sculpture — Nefertiti Silhouette | Namdev Infratech",
+    seo_description: "Hand-assembled CNC-cut corten steel sculpture inspired by Queen Nefertiti. Layered metal art with brass accents, crafted by Namdev Infratech in Bangalore."
+  },
+  {
     title: "Basapura Villa Railing",
     slug: "basapura-villa-railing",
     description: `When the owners of a beautiful villa in Basapura envisioned a railing that would complement the elegance of their home, they turned to Namdev Infratech. What followed was a collaboration rooted in trust, craftsmanship, and an unwavering commitment to detail.

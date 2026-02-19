@@ -37,3 +37,35 @@ export type Lead = {
   status: 'new' | 'contacted' | 'converted';
   created_at: string;
 };
+
+export type ProductVariant = {
+  name: string;
+  description: string;
+  sizes?: string;
+  types?: string;
+  image?: string;
+};
+
+export type ProductFAQ = {
+  question: string;
+  answer: string;
+};
+
+export type Product = {
+  id: string;
+  title: string;
+  slug: string;
+  description: string;
+  category: string;
+  image: string | null;
+  features: string[];
+  use_cases: string[];
+  variants: ProductVariant[];
+  faqs: ProductFAQ[];
+  featured: boolean;
+  sort_order: number;
+  seo_title: string | null;
+  seo_description: string | null;
+  created_at: string;
+  updated_at: string;
+};

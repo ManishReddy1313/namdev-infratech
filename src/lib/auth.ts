@@ -7,14 +7,14 @@ const SESSION_DURATION_MS = 7 * 24 * 60 * 60 * 1000;
 
 export interface AdminUser {
   id: string;
-  email: string;
+  username: string;
   role: string;
 }
 
-export async function login(email: string, password: string): Promise<{ user: AdminUser; sessionId: string } | null> {
-  const user = await queryOne<{ id: string; email: string; password_hash: string; role: string }>(
-    'SELECT id, email, password_hash, role FROM admin_users WHERE email = $1',
-    [email]
+export async function login(username: string, password: string): Promise<{ user: AdminUser; sessionId: string } | null> {
+  const user = await queryOne<{ id: string; username: string; password_hash: string; role: string }>(
+    'SELECT id, username, password_hash, role FROM admin_users WHERE username = $1',
+    [username]
   );
   if (!user) return null;
 
@@ -28,7 +28,7 @@ export async function login(email: string, password: string): Promise<{ user: Ad
   );
   if (!session) return null;
 
-  return { user: { id: user.id, email: user.email, role: user.role }, sessionId: session.id };
+  return { user: { id: user.id, username: user.username, role: user.role }, sessionId: session.id };
 }
 
 export async function getSession(): Promise<AdminUser | null> {
@@ -36,15 +36,15 @@ export async function getSession(): Promise<AdminUser | null> {
   const sessionId = cookieStore.get(SESSION_COOKIE)?.value;
   if (!sessionId) return null;
 
-  const result = await queryOne<{ user_id: string; email: string; role: string }>(
-    `SELECT s.user_id, u.email, u.role FROM sessions s 
+  const result = await queryOne<{ user_id: string; username: string; role: string }>(
+    `SELECT s.user_id, u.username, u.role FROM sessions s 
      JOIN admin_users u ON s.user_id = u.id 
      WHERE s.id = $1 AND s.expires_at > NOW()`,
     [sessionId]
   );
   if (!result) return null;
 
-  return { id: result.user_id, email: result.email, role: result.role };
+  return { id: result.user_id, username: result.username, role: result.role };
 }
 
 export async function logout(): Promise<void> {

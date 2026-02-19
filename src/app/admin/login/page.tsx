@@ -6,12 +6,12 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import { motion } from 'framer-motion';
-import { Lock, Mail, Loader2 } from 'lucide-react';
+import { Lock, User, Loader2 } from 'lucide-react';
 import Image from 'next/image';
 import { cn } from '@/lib/utils';
 
 const loginSchema = z.object({
-  email: z.string().email('Please enter a valid email address'),
+  username: z.string().min(3, 'Username must be at least 3 characters'),
   password: z.string().min(6, 'Password must be at least 6 characters'),
 });
 
@@ -38,12 +38,12 @@ export default function AdminLoginPage() {
       const res = await fetch('/api/auth/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email: data.email, password: data.password }),
+        body: JSON.stringify({ username: data.username, password: data.password }),
       });
 
       const result = await res.json();
       if (!res.ok) {
-        setError(result.error || 'Invalid email or password');
+        setError(result.error || 'Invalid username or password');
         return;
       }
 
@@ -87,22 +87,22 @@ export default function AdminLoginPage() {
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
             <div>
               <label className="block text-sm font-medium text-primary-700 mb-1.5">
-                Email Address
+                Username
               </label>
               <div className="relative">
-                <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-primary-400" />
+                <User className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-primary-400" />
                 <input
-                  type="email"
-                  {...register('email')}
+                  type="text"
+                  {...register('username')}
                   className={cn(
                     'w-full pl-11 pr-4 py-3 border rounded-lg text-primary-900 placeholder-primary-400 focus:outline-none focus:ring-2 focus:ring-steel-900 focus:border-transparent transition-all',
-                    errors.email ? 'border-red-300' : 'border-primary-200'
+                    errors.username ? 'border-red-300' : 'border-primary-200'
                   )}
-                  placeholder="admin@namdevinfra.com"
+                  placeholder="Enter your username"
                 />
               </div>
-              {errors.email && (
-                <p className="text-red-500 text-xs mt-1">{errors.email.message}</p>
+              {errors.username && (
+                <p className="text-red-500 text-xs mt-1">{errors.username.message}</p>
               )}
             </div>
 
@@ -119,7 +119,7 @@ export default function AdminLoginPage() {
                     'w-full pl-11 pr-4 py-3 border rounded-lg text-primary-900 placeholder-primary-400 focus:outline-none focus:ring-2 focus:ring-steel-900 focus:border-transparent transition-all',
                     errors.password ? 'border-red-300' : 'border-primary-200'
                   )}
-                  placeholder="••••••••"
+                  placeholder="Enter your password"
                 />
               </div>
               {errors.password && (

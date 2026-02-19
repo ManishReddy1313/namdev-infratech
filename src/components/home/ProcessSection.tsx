@@ -3,37 +3,36 @@
 import { MessageSquare, PenTool, Calculator, Hammer, CheckCircle } from 'lucide-react';
 import SectionHeader from '@/components/ui/SectionHeader';
 import { StaggerContainer, SlideUp } from '@/components/ui/AnimationWrappers';
-import { cn } from '@/lib/utils';
 
 const steps = [
   {
     number: '01',
     title: 'Free Consultation',
-    description: 'We understand your requirements, offering expert guidance to help you make informed decisions.',
+    description: 'Share your project requirements and our team will assess feasibility, suggest the right materials, and outline the scope.',
     icon: MessageSquare,
   },
   {
     number: '02',
-    title: 'Design Discussion',
-    description: 'Collaborative sessions to transform ideas into functional, aesthetic, and feasible designs.',
+    title: 'Design & Planning',
+    description: 'We collaborate on design details — structural layouts, material specifications, and finishes that align with your vision.',
     icon: PenTool,
   },
   {
     number: '03',
-    title: 'Project Budgeting',
-    description: 'We prepare a transparent budget without compromising on quality and timelines.',
+    title: 'Transparent Budgeting',
+    description: 'Receive a detailed, itemized quotation with no hidden costs. We optimize material usage to maximize value for your budget.',
     icon: Calculator,
   },
   {
     number: '04',
-    title: 'Execution Phase',
-    description: 'We bring designs to reality with precision fabrication and installation services.',
+    title: 'Precision Execution',
+    description: 'Our skilled fabrication team brings your project to life with quality-controlled processes and regular progress updates.',
     icon: Hammer,
   },
   {
     number: '05',
-    title: 'Final Handover',
-    description: 'A detailed final review and quality assurance before we deliver the finished product.',
+    title: 'Quality Handover',
+    description: 'Every deliverable undergoes a thorough quality inspection before handover, backed by our 6-month service warranty.',
     icon: CheckCircle,
   },
 ];
@@ -44,8 +43,8 @@ export default function ProcessSection() {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <SectionHeader
           label="OUR PROCESS"
-          title="How We Work"
-          subtitle="We focus on offering our customers what's truly best for them."
+          title="Five Steps to Your Finished Project"
+          subtitle="A structured, transparent workflow that keeps you informed and your project on track from day one."
         />
 
         <StaggerContainer className="relative grid md:grid-cols-5 gap-8 md:gap-6">

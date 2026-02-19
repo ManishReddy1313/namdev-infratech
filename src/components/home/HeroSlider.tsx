@@ -8,18 +8,18 @@ import { cn } from '@/lib/utils';
 
 const slides = [
   {
-    title: 'Building a Stronger Tomorrow with Generations of Expertise',
-    subtitle: 'Precision engineering and robust construction solutions for a rapidly evolving world.',
+    title: 'Engineering Strength Into Every Structure Since 2003',
+    subtitle: 'Two decades of delivering premium structural steel, precision fabrication, and end-to-end infrastructure solutions across India.',
     gradient: 'from-primary-900 via-steel-900 to-primary-900',
   },
   {
-    title: 'Your Trusted Source for High-Quality Structural Materials',
-    subtitle: 'From structural steel to custom fabrication, we deliver materials that stand the test of time.',
+    title: 'Steel Products & Fabrication Under One Roof',
+    subtitle: 'Structural pipes, roofing sheets, MS plates, laser cutting, and more — everything your project demands, delivered on time.',
     gradient: 'from-steel-900 via-primary-900 to-steel-900',
   },
   {
-    title: 'Precision and Excellence in Every Crafted Piece',
-    subtitle: 'Custom fabrication, laser cutting, and engineering solutions for construction, architecture, and interior design.',
+    title: 'From 25 Tonnes to 400 Tonnes a Month',
+    subtitle: 'Our growth mirrors the trust of thousands of architects, builders, and contractors who rely on us for quality and consistency.',
     gradient: 'from-primary-900 via-steel-900 to-primary-900',
   },
 ];
@@ -91,14 +91,14 @@ export default function HeroSlider() {
                   href="/contact"
                   className="btn-primary inline-flex items-center justify-center gap-2 px-8 py-4"
                 >
-                  Get in Touch
+                  Request a Quote
                   <ArrowRight className="w-5 h-5" />
                 </Link>
                 <Link
-                  href="/projects"
+                  href="/products"
                   className="inline-flex items-center justify-center gap-2 px-8 py-4 border-2 border-white/60 hover:border-white text-white font-semibold rounded-pill transition-colors duration-300"
                 >
-                  Our Services
+                  Browse Products
                   <ChevronRight className="w-5 h-5" />
                 </Link>
               </motion.div>

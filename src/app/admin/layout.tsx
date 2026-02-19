@@ -10,6 +10,7 @@ import {
   FolderOpen,
   FileText,
   Users,
+  Package,
   LogOut,
   Menu,
   X,
@@ -18,6 +19,7 @@ import { cn } from '@/lib/utils';
 
 const navLinks = [
   { href: '/admin/dashboard', label: 'Dashboard', icon: LayoutDashboard },
+  { href: '/admin/products', label: 'Products', icon: Package },
   { href: '/admin/projects', label: 'Projects', icon: FolderOpen },
   { href: '/admin/blogs', label: 'Blog Posts', icon: FileText },
   { href: '/admin/leads', label: 'Leads', icon: Users },
@@ -25,6 +27,8 @@ const navLinks = [
 
 const pageTitles: Record<string, string> = {
   '/admin/dashboard': 'Dashboard',
+  '/admin/products': 'Products',
+  '/admin/products/new': 'New Product',
   '/admin/projects': 'Projects',
   '/admin/projects/new': 'New Project',
   '/admin/blogs': 'Blog Posts',
@@ -41,7 +45,7 @@ export default function AdminLayout({
   const pathname = usePathname();
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
-  const [userEmail, setUserEmail] = useState('');
+  const [userName, setUserName] = useState('');
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   useEffect(() => {
@@ -54,7 +58,7 @@ export default function AdminLayout({
           return;
         }
         setIsAuthenticated(true);
-        setUserEmail(data.user.email || '');
+        setUserName(data.user.username || '');
       } catch {
         router.push('/admin/login');
       } finally {
@@ -211,10 +215,10 @@ export default function AdminLayout({
         <div className="bg-white border-b border-steel-200 px-6 py-4 flex items-center justify-between">
           <h2 className="text-lg font-semibold font-display text-primary-900">{currentTitle}</h2>
           <div className="flex items-center gap-3">
-            <span className="text-sm text-primary-500 hidden sm:block">{userEmail}</span>
+            <span className="text-sm text-primary-500 hidden sm:block">{userName}</span>
             <div className="w-8 h-8 bg-steel-900 rounded-full flex items-center justify-center">
               <span className="text-white text-xs font-bold">
-                {userEmail.charAt(0).toUpperCase()}
+                {userName.charAt(0).toUpperCase()}
               </span>
             </div>
           </div>

@@ -6,10 +6,10 @@ import SectionHeader from '@/components/ui/SectionHeader';
 import { SlideIn, FadeIn } from '@/components/ui/AnimationWrappers';
 
 const stats = [
-  { value: 20, suffix: '+', label: 'Years in Industry' },
-  { value: 400, suffix: '+', label: 'Tonnes/Month' },
-  { value: 1, suffix: 'K+', label: 'Happy Clients' },
-  { value: 2003, suffix: '', label: 'Founded' },
+  { value: 20, suffix: '+', label: 'Years of Industry Experience' },
+  { value: 400, suffix: '+', label: 'Tonnes Delivered Monthly' },
+  { value: 1, suffix: 'K+', label: 'Projects Completed' },
+  { value: 6, suffix: '', label: 'Core Services Offered' },
 ];
 
 function StatItem({ value, suffix, label }: { value: number; suffix: string; label: string }) {
@@ -49,8 +49,8 @@ export default function CompanyPositioning() {
     <section className="py-20 md:py-28 bg-accent-50">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <SectionHeader
-          label="A NEW NAME, A STRONGER COMMITMENT"
-          title="From Namadeva Steel Center to Namdev Infratech"
+          label="WHO WE ARE"
+          title="Your Complete Steel & Infrastructure Partner"
           align="left"
         />
 
@@ -58,10 +58,10 @@ export default function CompanyPositioning() {
           <SlideIn direction="left">
             <div className="space-y-5">
               <p className="text-steel-700 leading-relaxed font-sans">
-                What started in 2003 as a simple material supply business has grown into a complete solution provider for interior design, architecture, and construction. From handling 25 tonnes back then to managing 400 tonnes per month now, we've come a long way.
+                Founded in 2003 by Bajrang Lal Didwania, Namdev Infratech has evolved from a regional steel supplier into a comprehensive infrastructure solutions company. We serve architects, interior designers, contractors, and builders with everything from raw structural materials to precision-engineered fabrication services.
               </p>
               <p className="text-steel-700 leading-relaxed font-sans">
-                Over the years, we've learned about the challenges designers, architects, and contractors face, and we've adapted to meet their needs. With services like custom fabrication, laser cutting, HR plate cutting, and more, our new name reflects our commitment to providing innovative, reliable solutions.
+                Our product catalog spans structural steel sections, roofing systems, jali and mesh products, and exterior cladding solutions. Paired with in-house capabilities for laser cutting, HR plate processing, and custom fabrication, we eliminate the need for multiple vendors — saving our clients time, cost, and coordination effort.
               </p>
             </div>
           </SlideIn>

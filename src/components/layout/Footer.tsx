@@ -4,20 +4,18 @@ import { Phone, Mail, MapPin, ArrowRight, ChevronRight } from 'lucide-react';
 
 const quickLinks = [
   { href: '/', label: 'Home' },
-  { href: '/projects', label: 'Products' },
-  { href: '/creative-projects', label: 'Services' },
+  { href: '/products', label: 'Products' },
+  { href: '/projects', label: 'Projects' },
   { href: '/blog', label: 'Blog' },
-  { href: '/about', label: 'About' },
+  { href: '/about', label: 'About Us' },
   { href: '/contact', label: 'Contact' },
 ];
 
-const services = [
-  'Structural Fabrication',
-  'General Fabrication',
-  'Elevation/Facade',
-  'Metal Partition',
-  'Warehouses',
-  'Custom Jobs',
+const productCategories = [
+  { href: '/products?category=Structural+Steel', label: 'Structural Steel' },
+  { href: '/products?category=Roofing+Solutions', label: 'Roofing Solutions' },
+  { href: '/products?category=Jali+Products', label: 'Jali Products' },
+  { href: '/products?category=Exterior+Solutions', label: 'Exterior Solutions' },
 ];
 
 export default function Footer() {
@@ -36,7 +34,7 @@ export default function Footer() {
               />
             </Link>
             <p className="text-accent-200 text-sm leading-relaxed">
-              Namdev Infratech, founded in 2003, is a trusted hub for construction, architecture, and interior design industries. From structural steel to custom fabrication, we build with precision and reliability.
+              Your complete steel and infrastructure partner since 2003. From structural materials to precision fabrication, we deliver quality solutions for architects, builders, and contractors across India.
             </p>
           </div>
 
@@ -61,15 +59,18 @@ export default function Footer() {
 
           <div>
             <h3 className="text-sm font-semibold uppercase tracking-wider mb-4 font-display">
-              Services
+              Product Categories
             </h3>
             <ul className="space-y-2">
-              {services.map((service) => (
-                <li key={service}>
-                  <span className="text-accent-200/80 text-sm flex items-center gap-1.5 group">
+              {productCategories.map((cat) => (
+                <li key={cat.label}>
+                  <Link
+                    href={cat.href}
+                    className="text-accent-200/80 hover:text-accent-200 text-sm flex items-center gap-1.5 transition-colors duration-200"
+                  >
                     <ArrowRight size={14} className="text-accent-200" />
-                    {service}
-                  </span>
+                    {cat.label}
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -82,7 +83,7 @@ export default function Footer() {
             <ul className="space-y-3">
               <li className="flex items-start gap-3 text-accent-200/80 text-sm">
                 <MapPin size={16} className="text-accent-200 mt-0.5 shrink-0" />
-                <span>123 Industrial Area, Sector 5, Mumbai, Maharashtra 400001</span>
+                <span>Khasra No. 347, Village Tigaon, Faridabad, Haryana</span>
               </li>
               <li>
                 <a
@@ -110,19 +111,12 @@ export default function Footer() {
       <div className="border-t border-primary-800">
         <div className="container-custom py-6 flex flex-col sm:flex-row items-center justify-between gap-4">
           <p className="text-accent-200/60 text-sm">
-            © 2025 Namdev Infratech. All rights reserved.
+            &copy; {new Date().getFullYear()} Namdev Infratech. All rights reserved.
           </p>
-          <div className="flex items-center gap-4">
-            {['Facebook', 'Twitter', 'LinkedIn', 'Instagram'].map((social) => (
-              <a
-                key={social}
-                href="#"
-                className="w-8 h-8 rounded-full bg-primary-800 hover:bg-accent-200 flex items-center justify-center text-accent-200/60 hover:text-primary-900 text-xs font-medium transition-all duration-200"
-                aria-label={social}
-              >
-                {social[0]}
-              </a>
-            ))}
+          <div className="flex items-center gap-6 text-accent-200/60 text-xs">
+            <Link href="/about" className="hover:text-accent-200 transition-colors">About</Link>
+            <Link href="/contact" className="hover:text-accent-200 transition-colors">Contact</Link>
+            <Link href="/admin/login" className="hover:text-accent-200 transition-colors">Admin</Link>
           </div>
         </div>
       </div>

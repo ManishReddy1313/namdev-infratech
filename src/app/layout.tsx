@@ -21,24 +21,30 @@ const raleway = Raleway({
 export const metadata: Metadata = {
   title: {
     template: '%s | Namdev Infratech',
-    default: 'Namdev Infratech | Building a Stronger Tomorrow',
+    default: 'Namdev Infratech | Steel Products & Infrastructure Solutions Since 2003',
   },
   description:
-    'Namdev Infratech - Your trusted source for high-quality structural materials, custom fabrication, laser cutting, and precision engineering. Founded in 2003, serving construction, architecture, and interior design industries.',
+    'Namdev Infratech supplies structural steel, roofing sheets, jali products, and exterior solutions. In-house fabrication, laser cutting, and engineering services for architects, builders, and contractors across India.',
   keywords: [
-    'infrastructure',
-    'fabrication',
+    'structural steel supplier India',
+    'MS angle',
+    'roofing sheets',
     'steel fabrication',
-    'structural steel',
-    'custom fabrication',
     'laser cutting',
+    'jali products',
+    'ACP cladding',
+    'HPL sheets',
     'Namdev Infratech',
     'construction materials',
+    'steel products Faridabad',
+    'infrastructure solutions',
   ],
   openGraph: {
     type: 'website',
     locale: 'en_IN',
     siteName: 'Namdev Infratech',
+    title: 'Namdev Infratech | Steel Products & Infrastructure Solutions',
+    description: 'Structural steel, roofing, fabrication, and engineering solutions. Trusted by 1000+ clients since 2003.',
   },
 };
 

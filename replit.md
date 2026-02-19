@@ -107,7 +107,7 @@ src/
 - All homepage content rewritten with original SEO-friendly copy
 - About page rewritten with original content, Didwania family team bios
 - Auth switched from email-based to username-based login
-- Navbar updated: Products link added, Creative Projects removed
+- Navbar updated: Products link added, Creative Projects link restored
 - Footer updated: product categories links, real Faridabad address
 - SEO meta tags enhanced with product-specific keywords
 

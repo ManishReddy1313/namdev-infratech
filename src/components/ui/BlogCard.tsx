@@ -27,6 +27,7 @@ export default function BlogCard({ blog, className }: BlogCardProps) {
               fill
               className="object-cover transition-transform duration-500 group-hover:scale-105"
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+              unoptimized
             />
           ) : (
             <div className="w-full h-full bg-primary-100 flex items-center justify-center">

@@ -5,8 +5,9 @@ import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
-import { Loader2, Plus, X, ArrowLeft } from 'lucide-react';
+import { Loader2, Plus, X, ArrowLeft, Upload, Image as ImageIcon } from 'lucide-react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { cn } from '@/lib/utils';
 import type { Product } from '@/types';
 
@@ -43,6 +44,7 @@ export default function ProductForm({ product }: { product?: Product }) {
     product?.variants || []
   );
   const [faqs, setFaqs] = useState<{ question: string; answer: string }[]>(product?.faqs || []);
+  const [uploading, setUploading] = useState(false);
 
   const [newFeature, setNewFeature] = useState('');
   const [newUseCase, setNewUseCase] = useState('');
@@ -69,6 +71,35 @@ export default function ProductForm({ product }: { product?: Product }) {
   });
 
   const titleValue = watch('title');
+  const imageValue = watch('image');
+
+  const handleImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const files = e.target.files;
+    if (!files || files.length === 0) return;
+
+    setUploading(true);
+    try {
+      const formData = new FormData();
+      formData.append('file', files[0]);
+      formData.append('folder', 'products');
+
+      const res = await fetch('/api/upload', { method: 'POST', body: formData });
+      const data = await res.json();
+      if (data.url) {
+        setValue('image', data.url);
+      } else {
+        setError('Image upload failed');
+      }
+    } catch {
+      setError('Image upload failed');
+    } finally {
+      setUploading(false);
+    }
+  };
+
+  const removeImage = () => {
+    setValue('image', '');
+  };
 
   const onSubmit = async (data: ProductFormData) => {
     setSaving(true);
@@ -215,12 +246,58 @@ export default function ProductForm({ product }: { product?: Product }) {
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-primary-700 mb-1.5">Image URL</label>
-            <input
-              {...register('image')}
-              className="w-full px-4 py-2.5 border border-steel-200 rounded-lg text-primary-900 focus:outline-none focus:ring-2 focus:ring-steel-900 focus:border-transparent"
-              placeholder="https://..."
-            />
+            <label className="block text-sm font-medium text-primary-700 mb-1.5">Product Image</label>
+            <div className="space-y-3">
+              {imageValue ? (
+                <div className="relative inline-block">
+                  <div className="relative w-48 h-36 rounded-lg overflow-hidden border border-steel-200">
+                    <Image
+                      src={imageValue}
+                      alt="Product image"
+                      fill
+                      className="object-cover"
+                      unoptimized
+                    />
+                  </div>
+                  <button
+                    type="button"
+                    onClick={removeImage}
+                    className="absolute -top-2 -right-2 w-6 h-6 bg-red-500 text-white rounded-full flex items-center justify-center hover:bg-red-600"
+                  >
+                    <X className="w-3 h-3" />
+                  </button>
+                </div>
+              ) : (
+                <label className="flex flex-col items-center justify-center w-48 h-36 border-2 border-dashed border-steel-300 rounded-lg cursor-pointer hover:border-steel-500 transition-colors">
+                  {uploading ? (
+                    <>
+                      <Loader2 className="w-8 h-8 text-steel-400 animate-spin mb-2" />
+                      <p className="text-sm text-steel-500">Uploading...</p>
+                    </>
+                  ) : (
+                    <>
+                      <Upload className="w-8 h-8 text-steel-400 mb-2" />
+                      <p className="text-sm text-steel-500">Click to upload</p>
+                    </>
+                  )}
+                  <input
+                    type="file"
+                    className="hidden"
+                    accept="image/*"
+                    onChange={handleImageUpload}
+                    disabled={uploading}
+                  />
+                </label>
+              )}
+              <div>
+                <p className="text-xs text-steel-400 mb-1">Or enter image URL directly:</p>
+                <input
+                  {...register('image')}
+                  className="w-full px-4 py-2.5 border border-steel-200 rounded-lg text-primary-900 focus:outline-none focus:ring-2 focus:ring-steel-900 focus:border-transparent text-sm"
+                  placeholder="https://..."
+                />
+              </div>
+            </div>
           </div>
         </div>
 

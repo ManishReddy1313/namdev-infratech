@@ -2,7 +2,6 @@ import { Pool } from 'pg';
 
 const pool = new Pool({
   connectionString: process.env.DATABASE_URL,
-  ssl: false,
 });
 
 export async function query<T = any>(text: string, params?: any[]): Promise<T[]> {

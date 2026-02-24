@@ -6,7 +6,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowRight, ChevronRight } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
-const slides = [
+const defaultSlides = [
   {
     title: 'Engineering Strength Into Every Structure Since 2003',
     subtitle: 'Two decades of delivering premium structural steel, precision fabrication, and end-to-end infrastructure solutions across India.',
@@ -24,12 +24,30 @@ const slides = [
   },
 ];
 
-export default function HeroSlider() {
+const gradients = [
+  'from-primary-900 via-steel-900 to-primary-900',
+  'from-steel-900 via-primary-900 to-steel-900',
+  'from-primary-900 via-steel-900 to-primary-900',
+];
+
+interface HeroSliderProps {
+  content?: { slides: Array<{ title: string; subtitle: string }> };
+}
+
+export default function HeroSlider({ content }: HeroSliderProps) {
+  const slides = content?.slides
+    ? content.slides.map((s, i) => ({
+        title: s.title,
+        subtitle: s.subtitle,
+        gradient: gradients[i % gradients.length],
+      }))
+    : defaultSlides;
+
   const [current, setCurrent] = useState(0);
 
   const next = useCallback(() => {
     setCurrent((prev) => (prev + 1) % slides.length);
-  }, []);
+  }, [slides.length]);
 
   useEffect(() => {
     const timer = setInterval(next, 5000);

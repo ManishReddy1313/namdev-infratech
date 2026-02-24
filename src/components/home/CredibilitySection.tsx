@@ -4,7 +4,7 @@ import { Award, Layers, Target, Settings, Clock, ShieldCheck } from 'lucide-reac
 import SectionHeader from '@/components/ui/SectionHeader';
 import { StaggerContainer, SlideUp, ScaleOnHover } from '@/components/ui/AnimationWrappers';
 
-const features = [
+const defaultFeatures = [
   {
     icon: Award,
     title: 'Two Decades of Expertise',
@@ -37,13 +37,23 @@ const features = [
   },
 ];
 
-export default function CredibilitySection() {
+interface CredibilitySectionProps {
+  content?: { label: string; heading: string; features: Array<{ title: string; description: string }> };
+}
+
+export default function CredibilitySection({ content }: CredibilitySectionProps) {
+  const features = defaultFeatures.map((f, i) => ({
+    ...f,
+    title: content?.features?.[i]?.title || f.title,
+    description: content?.features?.[i]?.description || f.description,
+  }));
+
   return (
     <section className="py-20 md:py-28 bg-accent-100/50">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <SectionHeader
-          label="WHY CHOOSE US"
-          title="The Namdev Infratech Advantage"
+          label={content?.label || "WHY CHOOSE US"}
+          title={content?.heading || "The Namdev Infratech Advantage"}
         />
 
         <StaggerContainer className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">

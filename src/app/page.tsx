@@ -1,3 +1,4 @@
+import { query } from '@/lib/db';
 import HeroSlider from '@/components/home/HeroSlider';
 import CompanyPositioning from '@/components/home/CompanyPositioning';
 import FeaturedProjects from '@/components/home/FeaturedProjects';
@@ -25,22 +26,30 @@ const jsonLd = {
   sameAs: [],
 };
 
-export default function HomePage() {
+export default async function HomePage() {
+  let contentMap: Record<string, any> = {};
+  try {
+    const rows = await query('SELECT section_key, content FROM site_content');
+    for (const row of rows) {
+      contentMap[(row as any).section_key] = (row as any).content;
+    }
+  } catch (e) {}
+
   return (
     <>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <HeroSlider />
-      <CompanyPositioning />
-      <FeaturedProjects />
-      <CreativeHighlight />
-      <ProcessSection />
-      <CredibilitySection />
-      <ProductsShowcase />
-      <LatestBlogs />
-      <ContactCTA />
+      <HeroSlider content={contentMap.hero_slides} />
+      <CompanyPositioning content={contentMap.company_positioning} />
+      <FeaturedProjects content={contentMap.featured_projects} />
+      <CreativeHighlight content={contentMap.services} />
+      <ProcessSection content={contentMap.process} />
+      <CredibilitySection content={contentMap.credibility} />
+      <ProductsShowcase content={contentMap.products_showcase} />
+      <LatestBlogs content={contentMap.latest_blogs} />
+      <ContactCTA content={contentMap.contact_cta} />
     </>
   );
 }

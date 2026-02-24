@@ -33,14 +33,15 @@ src/
 │   ├── blog/               # Blog listing + [slug] detail
 │   ├── about/              # About page with real team and timeline
 │   ├── contact/            # Contact form page
-│   ├── api/                # API routes (products, projects, blogs, leads, auth)
+│   ├── api/                # API routes (products, projects, blogs, leads, auth, site-content)
 │   └── admin/              # Admin panel
 │       ├── login/          # Admin login (username/password)
 │       ├── dashboard/      # Admin dashboard
 │       ├── products/       # Products CMS (listing, new, edit/[id])
 │       ├── projects/       # Projects CMS (listing, new, edit/[id])
 │       ├── blogs/          # Blog CMS (listing, new, edit/[id])
-│       └── leads/          # Leads management
+│       ├── leads/          # Leads management
+│       └── site-content/   # Homepage content editor (all sections editable)
 ├── components/
 │   ├── ui/                 # Reusable UI (AnimationWrappers, ProductCard, BlogCard, SectionHeader)
 │   ├── layout/             # Navbar (with logo), Footer, LayoutWrapper
@@ -57,6 +58,7 @@ src/
 ## Database Tables (Replit PostgreSQL)
 - **admin_users**: id (uuid), username, email, password_hash, role, created_at
 - **sessions**: id (uuid), user_id, expires_at, created_at
+- **site_content**: id (uuid), section_key (varchar unique), content (jsonb), updated_at
 - **products**: id (uuid), title, slug, description, category, image, features, use_cases, variants (jsonb), faqs (jsonb), featured, sort_order, seo_title, seo_description, created_at, updated_at
 - **projects**: id (uuid), title, slug, description, category, gallery, materials, client_type, featured, seo_title, seo_description, created_at, updated_at
 - **blogs**: id (uuid), title, slug, content, category, featured_image, seo_title, seo_description, published, created_at, updated_at
@@ -101,15 +103,16 @@ src/
 - Leads dashboard with status management (new/contacted/converted)
 
 ## Recent Changes
-- Products database seeded with 19 real products across 4 categories with original SEO descriptions
-- Products listing page and detail pages built with category filtering
+- Homepage content made fully dynamic — all text editable from admin "Site Content" page
+- site_content database table stores all homepage section content as JSONB
+- Admin Site Content page with per-section editing and save buttons
+- All 9 homepage components accept dynamic content props with hardcoded fallbacks
+- Production seed script updated to create site_content table and seed defaults
+- 19 projects with real images, including Custom CNC Sculpture — Nefertiti Silhouette
+- Creative Projects page rebuilt with real project images from database
+- Products database seeded with 19 real products across 4 categories
 - Products admin CMS built with full CRUD (features, variants, FAQs, SEO)
-- All homepage content rewritten with original SEO-friendly copy
-- About page rewritten with original content, Didwania family team bios
 - Auth switched from email-based to username-based login
-- Navbar updated: Products link added, Creative Projects link restored
-- Footer updated: product categories links, real Faridabad address
-- SEO meta tags enhanced with product-specific keywords
 
 ## User Preferences
 - Replit PostgreSQL (not Supabase)

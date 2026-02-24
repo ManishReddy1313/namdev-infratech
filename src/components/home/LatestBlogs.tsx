@@ -8,7 +8,11 @@ import SectionHeader from '@/components/ui/SectionHeader';
 import BlogCard from '@/components/ui/BlogCard';
 import { StaggerContainer, SlideUp } from '@/components/ui/AnimationWrappers';
 
-export default function LatestBlogs() {
+interface LatestBlogsProps {
+  content?: { label: string; heading: string; subtitle: string };
+}
+
+export default function LatestBlogs({ content }: LatestBlogsProps) {
   const [blogs, setBlogs] = useState<Blog[]>([]);
 
   useEffect(() => {
@@ -22,9 +26,9 @@ export default function LatestBlogs() {
     <section className="py-20 md:py-28 bg-accent-50">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <SectionHeader
-          label="INSIGHTS"
-          title="Latest from Our Blog"
-          subtitle="Stay updated with industry trends, project insights, and technical knowledge from our team."
+          label={content?.label || "INSIGHTS"}
+          title={content?.heading || "Latest from Our Blog"}
+          subtitle={content?.subtitle || "Stay updated with industry trends, project insights, and technical knowledge from our team."}
         />
 
         <StaggerContainer className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">

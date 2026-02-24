@@ -8,7 +8,11 @@ import SectionHeader from '@/components/ui/SectionHeader';
 import ProjectCard from '@/components/ui/ProjectCard';
 import { StaggerContainer, SlideUp } from '@/components/ui/AnimationWrappers';
 
-export default function FeaturedProjects() {
+interface FeaturedProjectsProps {
+  content?: { label: string; heading: string; subtitle: string };
+}
+
+export default function FeaturedProjects({ content }: FeaturedProjectsProps) {
   const [projects, setProjects] = useState<Project[]>([]);
 
   useEffect(() => {
@@ -22,9 +26,9 @@ export default function FeaturedProjects() {
     <section className="py-20 md:py-28 bg-accent-100/50">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <SectionHeader
-          label="OUR PRODUCTS"
-          title="Durable Structural Solutions"
-          subtitle="Reliable and quality materials for every project"
+          label={content?.label || "OUR PRODUCTS"}
+          title={content?.heading || "Durable Structural Solutions"}
+          subtitle={content?.subtitle || "Reliable and quality materials for every project"}
         />
 
         <StaggerContainer className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">

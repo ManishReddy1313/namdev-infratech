@@ -5,12 +5,17 @@ import { useInView } from 'framer-motion';
 import SectionHeader from '@/components/ui/SectionHeader';
 import { SlideIn, FadeIn } from '@/components/ui/AnimationWrappers';
 
-const stats = [
+const defaultStats = [
   { value: 20, suffix: '+', label: 'Years of Industry Experience' },
   { value: 400, suffix: '+', label: 'Tonnes Delivered Monthly' },
   { value: 1, suffix: 'K+', label: 'Projects Completed' },
   { value: 6, suffix: '', label: 'Core Services Offered' },
 ];
+
+const defaultLabel = 'WHO WE ARE';
+const defaultHeading = 'Your Complete Steel & Infrastructure Partner';
+const defaultDescription = 'Founded in 2003 by Bajrang Lal Didwania, Namdev Infratech has evolved from a regional steel supplier into a comprehensive infrastructure solutions company. We serve architects, interior designers, contractors, and builders with everything from raw structural materials to precision-engineered fabrication services.';
+const defaultDescription2 = 'Our product catalog spans structural steel sections, roofing systems, jali and mesh products, and exterior cladding solutions. Paired with in-house capabilities for laser cutting, HR plate processing, and custom fabrication, we eliminate the need for multiple vendors — saving our clients time, cost, and coordination effort.';
 
 function StatItem({ value, suffix, label }: { value: number; suffix: string; label: string }) {
   const ref = useRef<HTMLDivElement>(null);
@@ -44,13 +49,23 @@ function StatItem({ value, suffix, label }: { value: number; suffix: string; lab
   );
 }
 
-export default function CompanyPositioning() {
+interface CompanyPositioningProps {
+  content?: { label: string; heading: string; description: string; description2: string; stats: Array<{ value: number; suffix: string; label: string }> };
+}
+
+export default function CompanyPositioning({ content }: CompanyPositioningProps) {
+  const label = content?.label || defaultLabel;
+  const heading = content?.heading || defaultHeading;
+  const description = content?.description || defaultDescription;
+  const description2 = content?.description2 || defaultDescription2;
+  const stats = content?.stats || defaultStats;
+
   return (
     <section className="py-20 md:py-28 bg-accent-50">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <SectionHeader
-          label="WHO WE ARE"
-          title="Your Complete Steel & Infrastructure Partner"
+          label={label}
+          title={heading}
           align="left"
         />
 
@@ -58,10 +73,10 @@ export default function CompanyPositioning() {
           <SlideIn direction="left">
             <div className="space-y-5">
               <p className="text-steel-700 leading-relaxed font-sans">
-                Founded in 2003 by Bajrang Lal Didwania, Namdev Infratech has evolved from a regional steel supplier into a comprehensive infrastructure solutions company. We serve architects, interior designers, contractors, and builders with everything from raw structural materials to precision-engineered fabrication services.
+                {description}
               </p>
               <p className="text-steel-700 leading-relaxed font-sans">
-                Our product catalog spans structural steel sections, roofing systems, jali and mesh products, and exterior cladding solutions. Paired with in-house capabilities for laser cutting, HR plate processing, and custom fabrication, we eliminate the need for multiple vendors — saving our clients time, cost, and coordination effort.
+                {description2}
               </p>
             </div>
           </SlideIn>

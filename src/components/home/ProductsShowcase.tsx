@@ -15,7 +15,11 @@ const categoryLabels: Record<string, string> = {
   'exterior-solutions': 'Exterior Solutions',
 };
 
-export default function ProductsShowcase() {
+interface ProductsShowcaseProps {
+  content?: { label: string; heading: string; subtitle: string };
+}
+
+export default function ProductsShowcase({ content }: ProductsShowcaseProps) {
   const [products, setProducts] = useState<Product[]>([]);
 
   useEffect(() => {
@@ -31,9 +35,9 @@ export default function ProductsShowcase() {
     <section className="py-20 md:py-28 bg-white">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <SectionHeader
-          label="Our Products"
-          title="Built for Strength, Engineered for Quality"
-          subtitle="From structural steel to architectural finishes — explore our complete range of construction and infrastructure materials."
+          label={content?.label || "Our Products"}
+          title={content?.heading || "Built for Strength, Engineered for Quality"}
+          subtitle={content?.subtitle || "From structural steel to architectural finishes — explore our complete range of construction and infrastructure materials."}
         />
 
         <div className="flex flex-wrap justify-center gap-3 mb-10">

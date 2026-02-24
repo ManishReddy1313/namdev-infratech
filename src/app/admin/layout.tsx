@@ -11,6 +11,7 @@ import {
   FileText,
   Users,
   Package,
+  PenSquare,
   LogOut,
   Menu,
   X,
@@ -23,6 +24,7 @@ const navLinks = [
   { href: '/admin/projects', label: 'Projects', icon: FolderOpen },
   { href: '/admin/blogs', label: 'Blog Posts', icon: FileText },
   { href: '/admin/leads', label: 'Leads', icon: Users },
+  { href: '/admin/site-content', label: 'Site Content', icon: PenSquare },
 ];
 
 const pageTitles: Record<string, string> = {
@@ -34,6 +36,7 @@ const pageTitles: Record<string, string> = {
   '/admin/blogs': 'Blog Posts',
   '/admin/blogs/new': 'New Blog Post',
   '/admin/leads': 'Leads',
+  '/admin/site-content': 'Site Content',
 };
 
 export default function AdminLayout({

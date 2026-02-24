@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { ArrowRight, Hammer, Ruler, Building2, LayoutGrid, Warehouse, Wrench } from 'lucide-react';
 import { FadeIn, SlideUp, StaggerContainer } from '@/components/ui/AnimationWrappers';
 
-const services = [
+const defaultServices = [
   { icon: Building2, title: 'Structural Fabrication', description: 'Heavy steel structures, trusses, and frameworks for industrial and commercial construction.' },
   { icon: Hammer, title: 'General Fabrication', description: 'Custom metalwork including gates, grills, railings, staircases, and furniture.' },
   { icon: Ruler, title: 'Elevation & Facade Work', description: 'Modern building facades using HPL, ACP, laser-cut panels, and cladding systems.' },
@@ -13,7 +13,17 @@ const services = [
   { icon: Wrench, title: 'Custom Jobs', description: 'Laser cutting, HR plate processing, CNC bending, and specialized engineering work.' },
 ];
 
-export default function CreativeHighlight() {
+interface CreativeHighlightProps {
+  content?: { label: string; heading: string; description: string; items: Array<{ title: string; description: string }> };
+}
+
+export default function CreativeHighlight({ content }: CreativeHighlightProps) {
+  const services = defaultServices.map((s, i) => ({
+    ...s,
+    title: content?.items?.[i]?.title || s.title,
+    description: content?.items?.[i]?.description || s.description,
+  }));
+
   return (
     <section className="relative py-20 md:py-28 overflow-hidden">
       <div className="absolute inset-0 bg-primary-900" />
@@ -22,13 +32,13 @@ export default function CreativeHighlight() {
       <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8">
         <FadeIn className="text-center mb-14">
           <span className="inline-block text-sm font-semibold uppercase tracking-wider text-accent-200 mb-3 font-sans">
-            OUR SERVICES
+            {content?.label || 'OUR SERVICES'}
           </span>
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-tight font-display">
-            Complete Fabrication & Engineering Solutions
+            {content?.heading || 'Complete Fabrication & Engineering Solutions'}
           </h2>
           <p className="mt-4 text-lg text-accent-200/80 max-w-2xl mx-auto font-sans">
-            Beyond materials — we design, fabricate, and install. Our in-house team handles projects from initial consultation to final handover.
+            {content?.description || 'Beyond materials — we design, fabricate, and install. Our in-house team handles projects from initial consultation to final handover.'}
           </p>
         </FadeIn>
 

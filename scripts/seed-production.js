@@ -57,4 +57,55 @@ async function seedProducts() {
   }
 }
 
-seedProducts();
+async function seedSiteContent() {
+  let pool;
+  try {
+    pool = new Pool({ connectionString: process.env.DATABASE_URL });
+
+    await pool.query(`
+      CREATE TABLE IF NOT EXISTS site_content (
+        id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+        section_key VARCHAR(100) UNIQUE NOT NULL,
+        content JSONB NOT NULL DEFAULT '{}',
+        updated_at TIMESTAMP DEFAULT NOW()
+      )
+    `);
+
+    const sections = [
+      { key: 'hero_slides', content: { slides: [
+        { title: 'Engineering Strength Into Every Structure Since 2003', subtitle: 'Two decades of delivering premium structural steel, precision fabrication, and end-to-end infrastructure solutions across India.' },
+        { title: 'Steel Products & Fabrication Under One Roof', subtitle: 'Structural pipes, roofing sheets, MS plates, laser cutting, and more — everything your project demands, delivered on time.' },
+        { title: 'From 25 Tonnes to 400 Tonnes a Month', subtitle: 'Our growth mirrors the trust of thousands of architects, builders, and contractors who rely on us for quality and consistency.' }
+      ]}},
+      { key: 'company_positioning', content: { label: 'WHO WE ARE', heading: 'Your Complete Steel & Infrastructure Partner', description: 'Founded in 2003 by Bajrang Lal Didwania, Namdev Infratech has evolved from a regional steel supplier into a comprehensive infrastructure solutions company. We serve architects, interior designers, contractors, and builders with everything from raw structural materials to precision-engineered fabrication services.', description2: 'Our product catalog spans structural steel sections, roofing systems, jali and mesh products, and exterior cladding solutions. Paired with in-house capabilities for laser cutting, HR plate processing, and custom fabrication, we eliminate the need for multiple vendors — saving our clients time, cost, and coordination effort.', stats: [{ value: 20, suffix: '+', label: 'Years of Industry Experience' }, { value: 400, suffix: '+', label: 'Tonnes Delivered Monthly' }, { value: 1, suffix: 'K+', label: 'Projects Completed' }, { value: 6, suffix: '', label: 'Core Services Offered' }]}},
+      { key: 'featured_projects', content: { label: 'OUR PRODUCTS', heading: 'Durable Structural Solutions', subtitle: 'Reliable and quality materials for every project' }},
+      { key: 'services', content: { label: 'OUR SERVICES', heading: 'Complete Fabrication & Engineering Solutions', description: 'Beyond materials — we design, fabricate, and install. Our in-house team handles projects from initial consultation to final handover.', items: [{ title: 'Structural Fabrication', description: 'Heavy steel structures, trusses, and frameworks for industrial and commercial construction.' }, { title: 'General Fabrication', description: 'Custom metalwork including gates, grills, railings, staircases, and furniture.' }, { title: 'Elevation & Facade Work', description: 'Modern building facades using HPL, ACP, laser-cut panels, and cladding systems.' }, { title: 'Metal Partitions', description: 'Decorative and functional metal partitions for offices, retail, and residential spaces.' }, { title: 'Warehouse Construction', description: 'Complete industrial shed and warehouse solutions from foundation to roofing.' }, { title: 'Custom Jobs', description: 'Laser cutting, HR plate processing, CNC bending, and specialized engineering work.' }]}},
+      { key: 'process', content: { label: 'OUR PROCESS', heading: 'Five Steps to Your Finished Project', subtitle: 'A structured, transparent workflow that keeps you informed and your project on track from day one.', steps: [{ title: 'Free Consultation', description: 'Share your project requirements and our team will assess feasibility, suggest the right materials, and outline the scope.' }, { title: 'Design & Planning', description: 'We collaborate on design details — structural layouts, material specifications, and finishes that align with your vision.' }, { title: 'Transparent Budgeting', description: 'Receive a detailed, itemized quotation with no hidden costs. We optimize material usage to maximize value for your budget.' }, { title: 'Precision Execution', description: 'Our skilled fabrication team brings your project to life with quality-controlled processes and regular progress updates.' }, { title: 'Quality Handover', description: 'Every deliverable undergoes a thorough quality inspection before handover, backed by our 6-month service warranty.' }]}},
+      { key: 'credibility', content: { label: 'WHY CHOOSE US', heading: 'The Namdev Infratech Advantage', features: [{ title: 'Two Decades of Expertise', description: 'Over 20 years of hands-on experience across steel supply, fabrication, and infrastructure construction.' }, { title: 'Single-Source Convenience', description: 'Materials, fabrication, and installation — all from one team. No more coordinating between multiple vendors.' }, { title: 'Precision at Every Stage', description: 'CNC laser cutting, exact specifications, and rigorous quality checks ensure every piece meets your standards.' }, { title: 'Solutions, Not Just Products', description: 'We analyze your project requirements and recommend the optimal materials, techniques, and designs.' }, { title: 'Reliable, On-Schedule Delivery', description: 'Disciplined project management and a 400+ tonne monthly capacity ensure your timelines are met consistently.' }, { title: '6-Month Service Warranty', description: 'Every fabrication project includes a comprehensive 6-month warranty covering workmanship and materials.' }]}},
+      { key: 'products_showcase', content: { label: 'Our Products', heading: 'Built for Strength, Engineered for Quality', subtitle: 'From structural steel to architectural finishes — explore our complete range of construction and infrastructure materials.' }},
+      { key: 'latest_blogs', content: { label: 'INSIGHTS', heading: 'Latest from Our Blog', subtitle: 'Stay updated with industry trends, project insights, and technical knowledge from our team.' }},
+      { key: 'contact_cta', content: { heading: 'Ready to Build Something Great?', description: 'Get in touch with our team to discuss your project requirements.', phone: '+919999999999', whatsapp: '919999999999' }},
+    ];
+
+    let inserted = 0;
+    for (const s of sections) {
+      const result = await pool.query(
+        `INSERT INTO site_content (section_key, content, updated_at) VALUES ($1, $2, NOW()) ON CONFLICT (section_key) DO NOTHING`,
+        [s.key, JSON.stringify(s.content)]
+      );
+      if (result.rowCount > 0) inserted++;
+    }
+    console.log(`Seeded ${inserted} site content sections (${sections.length - inserted} already existed).`);
+    await pool.end();
+  } catch (error) {
+    console.error('Site content seed warning (non-fatal):', error.message);
+    if (pool) await pool.end().catch(() => {});
+  }
+}
+
+async function main() {
+  await seedProducts();
+  await seedSiteContent();
+}
+
+main();

@@ -4,7 +4,7 @@ import { MessageSquare, PenTool, Calculator, Hammer, CheckCircle } from 'lucide-
 import SectionHeader from '@/components/ui/SectionHeader';
 import { StaggerContainer, SlideUp } from '@/components/ui/AnimationWrappers';
 
-const steps = [
+const defaultSteps = [
   {
     number: '01',
     title: 'Free Consultation',
@@ -37,14 +37,24 @@ const steps = [
   },
 ];
 
-export default function ProcessSection() {
+interface ProcessSectionProps {
+  content?: { label: string; heading: string; subtitle: string; steps: Array<{ title: string; description: string }> };
+}
+
+export default function ProcessSection({ content }: ProcessSectionProps) {
+  const steps = defaultSteps.map((s, i) => ({
+    ...s,
+    title: content?.steps?.[i]?.title || s.title,
+    description: content?.steps?.[i]?.description || s.description,
+  }));
+
   return (
     <section className="py-20 md:py-28 bg-accent-50">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <SectionHeader
-          label="OUR PROCESS"
-          title="Five Steps to Your Finished Project"
-          subtitle="A structured, transparent workflow that keeps you informed and your project on track from day one."
+          label={content?.label || "OUR PROCESS"}
+          title={content?.heading || "Five Steps to Your Finished Project"}
+          subtitle={content?.subtitle || "A structured, transparent workflow that keeps you informed and your project on track from day one."}
         />
 
         <StaggerContainer className="relative grid md:grid-cols-5 gap-8 md:gap-6">

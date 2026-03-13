@@ -9,11 +9,13 @@ type SectionConfig = {
   fields: FieldConfig[];
 };
 
+type SubFieldConfig = { type: 'text' | 'textarea' | 'number'; name: string; label: string; wide?: boolean; hint?: string };
+
 type FieldConfig =
   | { type: 'text'; name: string; label: string }
   | { type: 'textarea'; name: string; label: string }
   | { type: 'number'; name: string; label: string }
-  | { type: 'array'; name: string; label: string; fields: { type: 'text' | 'textarea' | 'number'; name: string; label: string }[]; count: number };
+  | { type: 'array'; name: string; label: string; fields: SubFieldConfig[]; count: number };
 
 const sections: SectionConfig[] = [
   {
@@ -28,6 +30,7 @@ const sections: SectionConfig[] = [
         fields: [
           { type: 'text', name: 'title', label: 'Title' },
           { type: 'text', name: 'subtitle', label: 'Subtitle' },
+          { type: 'text', name: 'image', label: 'Background Image Path', hint: 'e.g. /uploads/projects/namdev-warehouse-1.jpg', wide: true },
         ],
       },
     ],
@@ -265,7 +268,7 @@ export default function SiteContentPage() {
                           </p>
                           <div className="grid gap-3 sm:grid-cols-2">
                             {field.fields.map((subField) => (
-                              <div key={subField.name}>
+                              <div key={subField.name} className={subField.wide ? 'sm:col-span-2' : ''}>
                                 <label className="block text-xs font-medium text-steel-600 mb-1">
                                   {subField.label}
                                 </label>
@@ -283,6 +286,9 @@ export default function SiteContentPage() {
                                   }
                                   className="w-full px-3 py-2 border border-steel-200 rounded-lg text-sm text-primary-900 focus:outline-none focus:ring-2 focus:ring-steel-900 focus:border-transparent"
                                 />
+                                {subField.hint && (
+                                  <p className="mt-1 text-xs text-steel-400">{subField.hint}</p>
+                                )}
                               </div>
                             ))}
                           </div>
